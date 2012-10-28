@@ -10,11 +10,19 @@
 
 		<smartDevices>
 			<name>Index</name>
-                        <method>walk</method>
-                        <source>value</source>
+			<method>walk</method>
+			<source>value</source>
 			<direction>input</direction>
 			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartdevices"</oid>
 		</smartDevices>
+
+		<smartDescriptions>
+			<name>Description</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>input</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartdescriptions"</oid>
+		</smartDescriptions>
 
 		<smartReadErrors>
 			<name>Raw Read Errors</name>

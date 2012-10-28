@@ -1,4 +1,6 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
+use strict;
+use warnings;
 # Copyright (C) 2009-2011 Glen Pitt-Pladdy
 #
 # This program is free software; you can redistribute it and/or
@@ -23,10 +25,15 @@
 #
 # Put "worst" on the command line and the smallest gap to threshold of all
 # parameters will be output.
+#
+# Version 20121028
 
-$FILES = '/var/local/snmp/smart';
+my $FILES = '/var/local/snmp/smart';
 
-$param = shift @ARGV;
+my $param = shift @ARGV;
+my $devicelist = 0;
+my $worst = 0;
+my $raw;
 if ( $param eq 'devices' ) {
 	$devicelist = 1;
 } elsif ( $param =~ /^worst$/i ) {
@@ -35,26 +42,29 @@ if ( $param eq 'devices' ) {
 	$raw = 1;
 } elsif ( $param =~ /^\d+$/ ) {
 	$raw = 0;
+} elsif ( lc $param eq 'description' ) {
+	# nothing to do
 } else {
-	die "FATAL - need the numeric parameter to show\n";
+	die "FATAL - need the numeric parameter or 'description' to show\n";
 }
 
 # run through current drives
 opendir LS, "/dev" or die "FATAL - can't list /dev: $!\n";
-while ( defined ( $drive = readdir LS ) ) {
+my @drives;
+while ( defined ( my $drive = readdir LS ) ) {
 	if ( $drive !~ /^sd[a-z]$/ ) { next; }	# skip non drives
 	push @drives, $drive
 }
 closedir LS;
 
 if ( $devicelist ) {
-	foreach $drive (sort @drives) {
+	foreach my $drive (sort @drives) {
 		print "/dev/$drive\n";
 	}
 	exit 0;
 }
 
-foreach $drive (sort @drives) {
+foreach my $drive (sort @drives) {
 	# deal with missing files
 	if ( ! -f "$FILES-$drive" ) {
 		print "NA\n";
@@ -63,16 +73,47 @@ foreach $drive (sort @drives) {
 	# grab the parameter from the file
 	open DR, "$FILES-$drive"
 		or die "FATAL - can't read \"$FILES-$drive\": $!\n";
+	my $line;
+	my $model;
+	my $serial;
+	my $firmware;
+	my $capacity;
 	while ( defined ( $line = <DR> )
 		and $line !~ /^ID#\s+ATTRIBUTE_NAME\s+FLAG\s+VALUE\s+WORST\s+THRESH/ )
-		{}
-	$worstcase = 255;
-	undef $health;
-	while ( defined ( $line = <DR> ) ) {
+		{
+		if ( $line =~ /^Device Model:\s*(\w.*)$/ ) {
+			$model = $1;
+		} elsif ( $line =~ /^Serial Number:\s*(\w.*)$/ ) {
+			$serial = $1;
+		} elsif ( $line =~ /^Firmware Version:\s*(\w.*)$/ ) {
+			$firmware = $1;
+		} elsif ( $line =~ /^User Capacity:\s*(\d[\d\,]*) bytes/ ) {
+			my $cap = $1;
+			my $unit = 'B';
+			for ('kB','MB','GB','TB','PB') {
+				if ( $cap !~ s/,\d{3}$// ) { last; }
+				$unit = $_;
+			}
+			$capacity = "$cap $unit"
+		}
+	}
+	if ( lc $param eq 'description' ) {
+		my $description = '';
+		if ( defined $model ) { $description .= " $model"; }
+		if ( defined $serial ) { $description .= " (SN $serial)"; }
+		if ( defined $firmware ) { $description .= " [$firmware]"; }
+		if ( defined $capacity ) { $description .= " $capacity" }
+		$description =~ s/^\s+//;
+		print "$description\n";
+		next;
+	}
+	my $worstcase = 255;
+	my $health;
+	while ( defined ( my $line = <DR> ) ) {
 		chomp $line;
 		if ( $line eq '' ) { last; }
 		$line =~ s/^\s*//;
-		@fields = split /\s+/, $line;
+		my @fields = split /\s+/, $line;
 		if ( $worst ) {
 			$health = $fields[3] - $fields[5];
 			if ( $health < $worstcase ) {
