@@ -1,0 +1,102 @@
+#!/usr/bin/perl -w
+# Copyright (C) 2009-2011 Glen Pitt-Pladdy
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+#
+#
+# See: http://www.pitt-pladdy.com/blog/_20091031-144604_0000_SMART_stats_on_Cacti_via_SNMP_/
+#
+# Put SMART parameter ID on command line, prefixed by 'R' if you want raw value
+#
+# Put "worst" on the command line and the smallest gap to threshold of all
+# parameters will be output.
+
+$FILES = '/var/local/snmp/smart';
+
+$param = shift @ARGV;
+if ( $param eq 'devices' ) {
+	$devicelist = 1;
+} elsif ( $param =~ /^worst$/i ) {
+	$worst = 1;
+} elsif ( $param =~ s/^[rR](\d+)$/$1/ ) {
+	$raw = 1;
+} elsif ( $param =~ /^\d+$/ ) {
+	$raw = 0;
+} else {
+	die "FATAL - need the numeric parameter to show\n";
+}
+
+# run through current drives
+opendir LS, "/dev" or die "FATAL - can't list /dev: $!\n";
+while ( defined ( $drive = readdir LS ) ) {
+	if ( $drive !~ /^sd[a-z]$/ ) { next; }	# skip non drives
+	push @drives, $drive
+}
+closedir LS;
+
+if ( $devicelist ) {
+	foreach $drive (sort @drives) {
+		print "/dev/$drive\n";
+	}
+	exit 0;
+}
+
+foreach $drive (sort @drives) {
+	# deal with missing files
+	if ( ! -f "$FILES-$drive" ) {
+		print "NA\n";
+		next;
+	}
+	# grab the parameter from the file
+	open DR, "$FILES-$drive"
+		or die "FATAL - can't read \"$FILES-$drive\": $!\n";
+	while ( defined ( $line = <DR> )
+		and $line !~ /^ID#\s+ATTRIBUTE_NAME\s+FLAG\s+VALUE\s+WORST\s+THRESH/ )
+		{}
+	$worstcase = 255;
+	undef $health;
+	while ( defined ( $line = <DR> ) ) {
+		chomp $line;
+		if ( $line eq '' ) { last; }
+		$line =~ s/^\s*//;
+		@fields = split /\s+/, $line;
+		if ( $worst ) {
+			$health = $fields[3] - $fields[5];
+			if ( $health < $worstcase ) {
+				$worstcase = $health;
+			}
+			next;	# go no further
+		}
+		if ( $fields[0] != $param ) { next; }
+		if ( $raw ) {
+			$health = $fields[9];
+			# we want the raw value
+			print "$health\n";
+		} else {
+			# how close are we to threshold?
+			$health = $fields[3] - $fields[5];
+			print "$health\n";
+			last;
+		}
+	}
+	close DR;
+	if ( $worst ) {
+		print "$worstcase\n";
+	} elsif ( ! defined ( $health ) ) {
+		# didn't get the parameter
+		print "NA\n";
+	}
+}
