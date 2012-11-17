@@ -1,0 +1,59 @@
+extend smartdevices /etc/snmp/smart-generic devices
+extend smartdescriptions /etc/snmp/smart-generic description
+# *hdd
+extend smartreaderr /etc/snmp/smart-generic 1
+# *hdd
+extend smartspinup /etc/snmp/smart-generic 3
+# hdd, ssd, cf
+extend smartsscnt /etc/snmp/smart-generic 4
+# *hdd, *ssd
+extend smartrealloc /etc/snmp/smart-generic 5
+# *hdd
+extend smartseekerr /etc/snmp/smart-generic 7
+# hdd, ssd
+extend smartpwrhours /etc/snmp/smart-generic 9
+# *hdd
+extend smartspinretr /etc/snmp/smart-generic 10
+# hdd, ssd, cf
+extend smartpwrcyc /etc/snmp/smart-generic 12
+# *hdd
+extend smartendtoend /etc/snmp/smart-generic 184
+# hdd, ssd
+extend smartuncorrect /etc/snmp/smart-generic 187
+# hdd
+extend smarthighflywr /etc/snmp/smart-generic 189
+# hdd
+extend smartairflow /etc/snmp/smart-generic R190
+# hdd
+extend smarttemp /etc/snmp/smart-generic R194
+# hdd, ssd
+extend smarteccrec /etc/snmp/smart-generic 195
+# hdd, cf
+extend smartreallocevent /etc/snmp/smart-generic 196
+# hdd, ssd, cf
+extend smartudamerr /etc/snmp/smart-generic 199
+# cf
+extend smartrunoutcl /etc/snmp/smart-generic 203
+# ssd
+extend smartssdlifeleft /etc/snmp/smart-generic 231
+# *ssd, cf
+extend smartendrsvd /etc/snmp/smart-generic 232
+# ssd, cf
+extend smartpwronwear /etc/snmp/smart-generic 233
+
+
+Stuff to add (maybe):
+# ssd
+175 Program_Fail_Count_Chip
+176 Erase_Fail_Count_Chip
+*177 Wear_Leveling_Count
+*178 Used_Rsvd_Blk_Cnt_Chip
+*179 Used_Rsvd_Blk_Cnt_Tot
+*180 Unused_Rsvd_Blk_Cnt_Tot
+181 Program_Fail_Cnt_Total
+182 Erase_Fail_Count_Total
+*183 Runtime_Bad_Block
+
+
+
+# * = Pre-fail
