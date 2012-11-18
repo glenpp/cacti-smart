@@ -26,9 +26,38 @@ use warnings;
 # Put "worst" on the command line and the smallest gap to threshold of all
 # parameters will be output.
 #
-# Version 20121028
+# Version 20121118
 
 my $FILES = '/var/local/snmp/smart';
+
+# By default we assume max of 100 and scale against the threshold
+# For special cases we have a database of parameters that need scaling differently
+my %SCALEBYFAMILY = (
+	'Seagate Barracuda 7200.12 family' => {
+#		7 => 2,		# Seek Errors has Thresh 30, but still sits mid-range on all drives
+		195 => 2,		# ECC Recovered seems to sit about 50 on all drives
+		199 => 0.5,		# UDMA CRC Errors seems to sit about 200 on all drives
+	},
+	'Western Digital Caviar Black' => {
+		1 => 0.671,		# Raw Read Errors seems to sit about 200 with thresh 51
+		3 => 0.478,		# Spin Up Time seems to start about 230 with thresh 21
+		5 => 1.667,		# Reallocated Sectors seems to sit at 200 with tresh 140
+		196 => 0.5,		# Reallocated Events seems to sit at 200
+		199 => 0.5,		# UDMA CRC Errors seems to sit at 200
+	},
+	'Western Digital Caviar Blue Serial ATA' => {
+		1 => 0.671,		# Raw Read Errors seems to sit about 200 with thresh 51
+		3 => 0.478,		# Spin Up Time seems to start about 230 with thresh 21
+		5 => 1.667,		# Reallocated Sectors seems to sit at 200 with tresh 140
+		196 => 0.5,		# Reallocated Events seems to sit at 200
+		199 => 0.5,		# UDMA CRC Errors seems to sit at 200
+	},
+);
+my %SCALEBYMODEL = (
+	'ST31000524AS' => $SCALEBYFAMILY{'Seagate Barracuda 7200.12 family'}
+);
+
+
 
 my $param = shift @ARGV;
 my $devicelist = 0;
@@ -74,6 +103,7 @@ foreach my $drive (sort @drives) {
 	open DR, "$FILES-$drive"
 		or die "FATAL - can't read \"$FILES-$drive\": $!\n";
 	my $line;
+	my $family;
 	my $model;
 	my $serial;
 	my $firmware;
@@ -81,7 +111,9 @@ foreach my $drive (sort @drives) {
 	while ( defined ( $line = <DR> )
 		and $line !~ /^ID#\s+ATTRIBUTE_NAME\s+FLAG\s+VALUE\s+WORST\s+THRESH/ )
 		{
-		if ( $line =~ /^Device Model:\s*(\w.*)$/ ) {
+		if ( $line =~ /^Model Family:\s*(\w.*)$/ ) {
+			$family = $1;
+		} elsif ( $line =~ /^Device Model:\s*(\w.*)$/ ) {
 			$model = $1;
 		} elsif ( $line =~ /^Serial Number:\s*(\w.*)$/ ) {
 			$serial = $1;
@@ -129,6 +161,16 @@ foreach my $drive (sort @drives) {
 		} else {
 			# how close are we to threshold?
 			$health = $fields[3] - $fields[5];
+			if ( defined $family and exists $SCALEBYFAMILY{$family}
+				and exists $SCALEBYFAMILY{$family}{$param} ) {
+				$health *= $SCALEBYFAMILY{$family}{$param}
+			} elsif ( defined $model
+				and exists $SCALEBYMODEL{$model}{$param} ) {
+				$health *= $SCALEBYMODEL{$model}{$param}
+			} elsif ( $fields[5] < 100 ) {
+				# we assume we can scale against 100
+				$health *= 100 / ( 100 - $fields[5] )
+			}
 			print "$health\n";
 			last;
 		}

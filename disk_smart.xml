@@ -106,7 +106,7 @@
 			<method>walk</method>
 			<source>value</source>
 			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartrepuncorrect"</oid>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartuncorrect"</oid>
 		</smartRepUncorrect>
 		<smartReallocEvent>
 			<name>196 Reallocated Event Count</name>
