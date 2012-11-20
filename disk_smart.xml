@@ -23,66 +23,234 @@
 			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartdescriptions"</oid>
 		</smartDescriptions>
 
-		<smartReadErrors>
+		<smart1>
 			<name>1 Raw Read Errors</name>
 			<method>walk</method>
 			<source>value</source>
 			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartreaderr"</oid>
-		</smartReadErrors>
-		<smartSpinUp>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart1"</oid>
+		</smart1>
+		<smart3>
 			<name>3 Spin Up Time</name>
 			<method>walk</method>
 			<source>value</source>
 			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartspinup"</oid>
-		</smartSpinUp>
-		<smartSSCount>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart3"</oid>
+		</smart3>
+		<smart4>
 			<name>4 Start Stop Count</name>
 			<method>walk</method>
 			<source>value</source>
 			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartsscnt"</oid>
-		</smartSSCount>
-		<smartReallocatedSectors>
-			<name>5 ReallocatedSectors</name>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart4"</oid>
+		</smart4>
+		<smart5>
+			<name>5 Reallocated Sectors</name>
 			<method>walk</method>
 			<source>value</source>
 			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartrealloc"</oid>
-		</smartReallocatedSectors>
-		<smartSeekErrors>
-			<name>7 SeekErrors</name>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart5"</oid>
+		</smart5>
+		<smart7>
+			<name>7 Seek Errors</name>
 			<method>walk</method>
 			<source>value</source>
 			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartseekerr"</oid>
-		</smartSeekErrors>
-		<smartPowerOnHours>
-			<name>9 PowerOnHours</name>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart7"</oid>
+		</smart7>
+		<smart9>
+			<name>9 Power On Hours</name>
 			<method>walk</method>
 			<source>value</source>
 			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartpwrhours"</oid>
-		</smartPowerOnHours>
-		<smartSpinRetry>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart9"</oid>
+		</smart9>
+		<smart10>
 			<name>10 Spin Retry Count</name>
 			<method>walk</method>
 			<source>value</source>
 			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartspinretr"</oid>
-		</smartSpinRetry>
-		<smartPwrCycCnt>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart10"</oid>
+		</smart10>
+		<smart12>
 			<name>12 PowerCycleCount</name>
 			<method>walk</method>
 			<source>value</source>
 			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartpwrcyc"</oid>
-		</smartPwrCycCnt>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart12"</oid>
+		</smart12>
+		<smart170>
+			<name>170 Reserve Block Count</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart170"</oid>
+		</smart170>
+		<smart171>
+			<name>171 Program Fail Count</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart171"</oid>
+		</smart171>
+		<smart172>
+			<name>172 Erase Fail Count</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart172"</oid>
+		</smart172>
+		<smart177>
+			<name>177 Wear Leveling Count</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart177"</oid>
+		</smart177>
+		<smart178>
+			<name>178 Used Rsvd Blk Cnt Chip</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart178"</oid>
+		</smart178>
+		<smart179>
+			<name>179 Used Rsvd Blk Cnt Tot</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart179"</oid>
+		</smart179>
+		<smart180>
+			<name>180 Unused Rsvd Blk Cnt Tot</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart180"</oid>
+		</smart180>
+		<smart181>
+			<name>181 Program_Fail_Cnt_Total</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart181"</oid>
+		</smart181>
+		<smart182>
+			<name>182 Erase_Fail_Count_Total</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart182"</oid>
+		</smart182>
+		<smart183>
+			<name>183 Runtime_Bad_Block</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart183"</oid>
+		</smart183>
+		<smart184>
+			<name>184 End-to-End Error</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart184"</oid>
+		</smart184>
+		<smart187>
+			<name>187 Reported Uncorrectable</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart187"</oid>
+		</smart187>
+		<smart189>
+			<name>189 High Fly Writes</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart189"</oid>
+		</smart189>
+		<smart196>
+			<name>196 Reallocated Event Count</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart196"</oid>
+		</smart196>
+		<smartR190>
+			<name>R190 Airflow Temperature</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartR190"</oid>
+		</smartR190>
+		<smartR194>
+			<name>R194 Temperature</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartR194"</oid>
+		</smartR194>
+		<smart195>
+			<name>195 ECC Recovered</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart195"</oid>
+		</smart195>
+		<smart199>
+			<name>199 UDMA CRC Error Count</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart199"</oid>
+		</smart199>
+		<smart203>
+			<name>203 Run Out Cancel</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart203"</oid>
+		</smart203>
+		<smart226>
+			<name>226 Workld_Media_Wear_Indic</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart226"</oid>
+		</smart226>
+		<smart230>
+			<name>230 Life_Curve_Status</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart230"</oid>
+		</smart230>
+		<smart231>
+			<name>231 SSD Life Left</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart231"</oid>
+		</smart231>
+		<smart232>
+			<name>232 Available Reservd Space / Endurance</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart232"</oid>
+		</smart232>
+		<smart233>
+			<name>233 Media Wearout Indicator / Power On Hours</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart233"</oid>
+		</smart233>
 
 
 
-
+<!--
 		<smart>
 			<name></name>
 			<method>walk</method>
@@ -90,94 +258,10 @@
 			<direction>output</direction>
 			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine.""</oid>
 		</smart>
+-->
 
 
 
-
-		<smartEndToEnd>
-			<name>184 End-to-End Error</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartendtoend"</oid>
-		</smartEndToEnd>
-		<smartRepUncorrect>
-			<name>187 Reported Uncorrectable</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartuncorrect"</oid>
-		</smartRepUncorrect>
-		<smartReallocEvent>
-			<name>196 Reallocated Event Count</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartreallocevent"</oid>
-		</smartReallocEvent>
-		<smartHighFlyWrite>
-			<name>189 High Fly Writes</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smarthighflywr"</oid>
-		</smartHighFlyWrite>
-		<smartAirflowTemperature>
-			<name>190 Airflow Temperature</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartairflow"</oid>
-		</smartAirflowTemperature>
-		<smartTemperature>
-			<name>194 Temperature</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smarttemp"</oid>
-		</smartTemperature>
-		<smartECCRecovered>
-			<name>195 ECC Recovered</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smarteccrec"</oid>
-		</smartECCRecovered>
-		<smartUDMACRC>
-			<name>199 UDMA CRC Error Count</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartudamerr"</oid>
-		</smartUDMACRC>
-		<smartRunOutCl>
-			<name>203 Run Out Cancel</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartrunoutcl"</oid>
-		</smartRunOutCl>
-		<smartSSDLife>
-			<name>231 SSD Life Left</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartssdlifeleft"</oid>
-		</smartSSDLife>
-		<smartEndRsvd>
-			<name>232 Available Reservd Space / Endurance</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartendrsvd"</oid>
-		</smartEndRsvd>
-		<smartPwrOnWear>
-			<name>233 Power On Hours / Media Wearout Indicator</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartpwronwear"</oid>
-		</smartPwrOnWear>
 
 	</fields>
 </interface>

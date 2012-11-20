@@ -32,7 +32,13 @@ my $FILES = '/var/local/snmp/smart';
 
 # By default we assume max of 100 and scale against the threshold
 # For special cases we have a database of parameters that need scaling differently
+# By setting the scale to U that will be returned instead - ie. hides invalid params
 my %SCALEBYFAMILY = (
+	'Seagate Barracuda 7200.10' => {
+#		7 => 2,		# Seek Errors has Thresh 30, but still sits mid-range on all drives
+		195 => 1.429,	# ECC Recovered seems to sit about 70 on all drives
+		199 => 0.5,		# UDMA CRC Errors seems to sit about 200 on all drives
+	},
 	'Seagate Barracuda 7200.12 family' => {
 #		7 => 2,		# Seek Errors has Thresh 30, but still sits mid-range on all drives
 		195 => 2,		# ECC Recovered seems to sit about 50 on all drives
@@ -52,9 +58,32 @@ my %SCALEBYFAMILY = (
 		196 => 0.5,		# Reallocated Events seems to sit at 200
 		199 => 0.5,		# UDMA CRC Errors seems to sit at 200
 	},
+	'SandForce Driven SSDs' => {
+		1 => 1.429,		# Raw Read Errors seems to start at 120 with thresh 50... on some
+		171 => 'U',		# Program_Fail_Count is 0
+		172 => 'U',		# Erase_Fail_Count is 0
+		174 => 'U',		# Unexpect_Power_Loss_Ct is 0
+		177 => 'U',		# Wear_Leveling_Count is 0
+		181 => 'U',		# Program_Fail_Cnt_Total is 0
+		182 => 'U',		# Erase_Fail_Count_Total is 0
+		195 => 0.833,	# ECC Recovered seems to start at 120... on some
+		196 => 0.833,	# Reallocated Events seems to start at 120... on some
+		201 => 0.833,	# Soft Read Errors seems to start at 120.... on some
+		204 => 0.833,	# Soft ECC Correction seems to start at 120.... on some
+		233 => 'U',		# Media_Wearout_Indicator is 0
+		234 => 'U',		# Unknown_Attribute / SandForce_Internal is 0
+		241 => 'U',		# Lifetime_Writes_GiB is 0
+		242 => 'U',		# Lifetime_Reads_GiB is 0
+	},
 );
 my %SCALEBYMODEL = (
-	'ST31000524AS' => $SCALEBYFAMILY{'Seagate Barracuda 7200.12 family'}
+	'ST3250310AS' => $SCALEBYFAMILY{'Seagate Barracuda 7200.10'},
+	'ST31000524AS' => $SCALEBYFAMILY{'Seagate Barracuda 7200.12 family'},
+	'OCZ-AGILITY3' => $SCALEBYFAMILY{'SandForce Driven SSDs'},
+	'SAMSUNG SSD PM830 FDE 2.5" 7mm 256GB' => {
+		195 => 0.5,		# ECC Recovered seems to start at 200
+		199 => 0.395,	# UDMA CRC Errors seems to start a 253... perhaps 255?
+	},
 );
 
 
@@ -146,8 +175,22 @@ foreach my $drive (sort @drives) {
 		if ( $line eq '' ) { last; }
 		$line =~ s/^\s*//;
 		my @fields = split /\s+/, $line;
-		if ( $worst ) {
+		if ( $worst and $fields[3] ne '---' and $fields[5] ne '---' ) {
 			$health = $fields[3] - $fields[5];
+			if ( defined $family and exists $SCALEBYFAMILY{$family}
+				and exists $SCALEBYFAMILY{$family}{$param} ) {
+				$health *= $SCALEBYFAMILY{$family}{$param}
+			} elsif ( defined $model
+				and exists $SCALEBYMODEL{$model}{$param} ) {
+				if ( $SCALEBYMODEL{$model}{$param} eq 'U' ) {
+					$health = 'U';
+				} else {
+					$health *= $SCALEBYMODEL{$model}{$param}
+				}
+			} elsif ( $fields[5] < 100 ) {
+				# we assume we can scale against 100
+				$health *= 100 / ( 100 - $fields[5] )
+			}
 			if ( $health < $worstcase ) {
 				$worstcase = $health;
 			}
@@ -159,6 +202,10 @@ foreach my $drive (sort @drives) {
 			# we want the raw value
 			print "$health\n";
 		} else {
+			if ( $fields[3] eq '---' or $fields[5] eq '---' ) {
+				print "U\n";
+				last;
+			}
 			# how close are we to threshold?
 			$health = $fields[3] - $fields[5];
 			if ( defined $family and exists $SCALEBYFAMILY{$family}
@@ -166,7 +213,11 @@ foreach my $drive (sort @drives) {
 				$health *= $SCALEBYFAMILY{$family}{$param}
 			} elsif ( defined $model
 				and exists $SCALEBYMODEL{$model}{$param} ) {
-				$health *= $SCALEBYMODEL{$model}{$param}
+				if ( $SCALEBYMODEL{$model}{$param} eq 'U' ) {
+					$health = 'U';
+				} else {
+					$health *= $SCALEBYMODEL{$model}{$param}
+				}
 			} elsif ( $fields[5] < 100 ) {
 				# we assume we can scale against 100
 				$health *= 100 / ( 100 - $fields[5] )
@@ -178,7 +229,7 @@ foreach my $drive (sort @drives) {
 	close DR;
 	if ( $worst ) {
 		print "$worstcase\n";
-	} elsif ( ! defined ( $health ) ) {
+	} elsif ( ! defined ( $health ) ) {	# TODO this is broken - when worst is specified we should display the worst parameter - if last is undef then we get NA
 		# didn't get the parameter
 		print "NA\n";
 	}
