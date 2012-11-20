@@ -65,7 +65,7 @@ extend smart187 /etc/snmp/smart-generic 187
 extend smart189 /etc/snmp/smart-generic 189
 # hdd
 # 190 Airflow_Temperature_Cel
-extend smartR190/etc/snmp/smart-generic R190
+extend smartR190 /etc/snmp/smart-generic R190
 # hdd, [O]ssd
 # 194 Temperature_Celsius
 extend smartR194 /etc/snmp/smart-generic R194

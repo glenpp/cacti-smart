@@ -39,19 +39,17 @@ my %SCALEBYFAMILY = (
 		195 => 1.429,	# ECC Recovered seems to sit about 70 on all drives
 		199 => 0.5,		# UDMA CRC Errors seems to sit about 200 on all drives
 	},
-	'Seagate Barracuda 7200.12 family' => {
+	'Seagate Barracuda 7200.12' => {
 #		7 => 2,		# Seek Errors has Thresh 30, but still sits mid-range on all drives
 		195 => 2,		# ECC Recovered seems to sit about 50 on all drives
 		199 => 0.5,		# UDMA CRC Errors seems to sit about 200 on all drives
 	},
-	'Western Digital Caviar Black' => {
-		1 => 0.671,		# Raw Read Errors seems to sit about 200 with thresh 51
-		3 => 0.478,		# Spin Up Time seems to start about 230 with thresh 21
-		5 => 1.667,		# Reallocated Sectors seems to sit at 200 with tresh 140
-		196 => 0.5,		# Reallocated Events seems to sit at 200
-		199 => 0.5,		# UDMA CRC Errors seems to sit at 200
+	'Seagate Barracuda Green (Adv. Format)' => {
+#		7 => 2,		# Seek Errors has Thresh 30, but still sits mid-range on all drives
+		195 => 4,		# ECC Recovered seems to sit about 25 on all drives
+		199 => 0.5,		# UDMA CRC Errors seems to sit about 200 on all drives
 	},
-	'Western Digital Caviar Blue Serial ATA' => {
+	'WD Caviar' => {	# Generic Cav
 		1 => 0.671,		# Raw Read Errors seems to sit about 200 with thresh 51
 		3 => 0.478,		# Spin Up Time seems to start about 230 with thresh 21
 		5 => 1.667,		# Reallocated Sectors seems to sit at 200 with tresh 140
@@ -59,7 +57,7 @@ my %SCALEBYFAMILY = (
 		199 => 0.5,		# UDMA CRC Errors seems to sit at 200
 	},
 	'SandForce Driven SSDs' => {
-		1 => 1.429,		# Raw Read Errors seems to start at 120 with thresh 50... on some
+		1 => 1.428,		# Raw Read Errors seems to start at 120 with thresh 50... on some
 		171 => 'U',		# Program_Fail_Count is 0
 		172 => 'U',		# Erase_Fail_Count is 0
 		174 => 'U',		# Unexpect_Power_Loss_Ct is 0
@@ -76,9 +74,20 @@ my %SCALEBYFAMILY = (
 		242 => 'U',		# Lifetime_Reads_GiB is 0
 	},
 );
+$SCALEBYFAMILY{'Seagate Barracuda 7200.12 family'} = $SCALEBYFAMILY{'Seagate Barracuda 7200.12'};	# some smartctl versions say "family"
+$SCALEBYFAMILY{'Western Digital Caviar Black'} = $SCALEBYFAMILY{'WD Caviar'};
+$SCALEBYFAMILY{'Western Digital Caviar Blue Serial ATA'} = $SCALEBYFAMILY{'WD Caviar'};
+$SCALEBYFAMILY{'Western Digital Caviar Green'} = $SCALEBYFAMILY{'WD Caviar'};
 my %SCALEBYMODEL = (
 	'ST3250310AS' => $SCALEBYFAMILY{'Seagate Barracuda 7200.10'},
-	'ST31000524AS' => $SCALEBYFAMILY{'Seagate Barracuda 7200.12 family'},
+	'ST3500418AS' => $SCALEBYFAMILY{'Seagate Barracuda 7200.12'},	# belts & braces
+	'ST31000524AS' => $SCALEBYFAMILY{'Seagate Barracuda 7200.12'},
+	'ST31000528AS' => $SCALEBYFAMILY{'Seagate Barracuda 7200.12'},	# belts & braces
+	'ST2000DL003-9VT166' => $SCALEBYFAMILY{'Seagate Barracuda Green (Adv. Format)'},	# belts & braces
+	'WDC WD1001FALS-00J7B0' => $SCALEBYFAMILY{'Western Digital Caviar Black'},	# belts & braces
+	'WDC WD5000AAKS-00A7B0' => $SCALEBYFAMILY{'Western Digital Caviar Blue Serial ATA'},	# belts & braces
+	'WDC WD10EAVS-00D7B1' => $SCALEBYFAMILY{'Western Digital Caviar Green'},	# belts & braces
+	'WDC WD20EARS-00MVWB0' => $SCALEBYFAMILY{'Western Digital Caviar Green'},	# belts & braces
 	'OCZ-AGILITY3' => $SCALEBYFAMILY{'SandForce Driven SSDs'},
 	'SAMSUNG SSD PM830 FDE 2.5" 7mm 256GB' => {
 		195 => 0.5,		# ECC Recovered seems to start at 200
@@ -208,19 +217,19 @@ foreach my $drive (sort @drives) {
 			}
 			# how close are we to threshold?
 			$health = $fields[3] - $fields[5];
-			if ( defined $family and exists $SCALEBYFAMILY{$family}
+			if ( defined $family
 				and exists $SCALEBYFAMILY{$family}{$param} ) {
-				$health *= $SCALEBYFAMILY{$family}{$param}
+				$health *= $SCALEBYFAMILY{$family}{$param};
 			} elsif ( defined $model
 				and exists $SCALEBYMODEL{$model}{$param} ) {
 				if ( $SCALEBYMODEL{$model}{$param} eq 'U' ) {
 					$health = 'U';
 				} else {
-					$health *= $SCALEBYMODEL{$model}{$param}
+					$health *= $SCALEBYMODEL{$model}{$param};
 				}
 			} elsif ( $fields[5] < 100 ) {
 				# we assume we can scale against 100
-				$health *= 100 / ( 100 - $fields[5] )
+				$health *= 100 / ( 100 - $fields[5] );
 			}
 			print "$health\n";
 			last;
