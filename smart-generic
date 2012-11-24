@@ -26,7 +26,7 @@ use warnings;
 # Put "worst" on the command line and the smallest gap to threshold of all
 # parameters will be output.
 #
-# Version 20121118
+# Version 20121124
 
 my $FILES = '/var/local/snmp/smart';
 
@@ -40,11 +40,13 @@ my %SCALEBYFAMILY = (
 		199 => 0.5,		# UDMA CRC Errors seems to sit about 200 on all drives
 	},
 	'Seagate Barracuda 7200.12' => {
+		1 => 0.8772,	# Raw Read Errors seems to start at 120 with thresh 6... on some
 #		7 => 2,		# Seek Errors has Thresh 30, but still sits mid-range on all drives
 		195 => 2,		# ECC Recovered seems to sit about 50 on all drives
 		199 => 0.5,		# UDMA CRC Errors seems to sit about 200 on all drives
 	},
 	'Seagate Barracuda Green (Adv. Format)' => {
+		1 => 0.8772,	# Raw Read Errors seems to start at 120 with thresh 6... on some
 #		7 => 2,		# Seek Errors has Thresh 30, but still sits mid-range on all drives
 		195 => 4,		# ECC Recovered seems to sit about 25 on all drives
 		199 => 0.5,		# UDMA CRC Errors seems to sit about 200 on all drives
@@ -57,17 +59,17 @@ my %SCALEBYFAMILY = (
 		199 => 0.5,		# UDMA CRC Errors seems to sit at 200
 	},
 	'SandForce Driven SSDs' => {
-		1 => 1.428,		# Raw Read Errors seems to start at 120 with thresh 50... on some
+		1 => 1.429,		# Raw Read Errors seems to start at 120 with thresh 50... on some
 		171 => 'U',		# Program_Fail_Count is 0
 		172 => 'U',		# Erase_Fail_Count is 0
 		174 => 'U',		# Unexpect_Power_Loss_Ct is 0
 		177 => 'U',		# Wear_Leveling_Count is 0
 		181 => 'U',		# Program_Fail_Cnt_Total is 0
 		182 => 'U',		# Erase_Fail_Count_Total is 0
-		195 => 0.833,	# ECC Recovered seems to start at 120... on some
-		196 => 0.833,	# Reallocated Events seems to start at 120... on some
-		201 => 0.833,	# Soft Read Errors seems to start at 120.... on some
-		204 => 0.833,	# Soft ECC Correction seems to start at 120.... on some
+#		195 => 0.833,	# ECC Recovered seems to start at 120... on some
+#		196 => 0.833,	# Reallocated Events seems to start at 120... on some
+#		201 => 0.833,	# Soft Read Errors seems to start at 120.... on some
+#		204 => 0.833,	# Soft ECC Correction seems to start at 120.... on some
 		233 => 'U',		# Media_Wearout_Indicator is 0
 		234 => 'U',		# Unknown_Attribute / SandForce_Internal is 0
 		241 => 'U',		# Lifetime_Writes_GiB is 0
@@ -231,6 +233,8 @@ foreach my $drive (sort @drives) {
 				# we assume we can scale against 100
 				$health *= 100 / ( 100 - $fields[5] );
 			}
+			# limit the parameter to 101 - that's for anything >100
+			if ( $health > 100 ) { $health = 100; }
 			print "$health\n";
 			last;
 		}
