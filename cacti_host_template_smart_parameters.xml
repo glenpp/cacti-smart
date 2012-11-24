@@ -30,6 +30,61 @@
 				<sv_data_source>
 				</sv_data_source>
 			</hash_110021a80d49ab95629d6699668a53c6aba73f>
+			<hash_110021f5501bf129b05ddbcb182e104045dc91>
+				<name>SMART Health (AGILITY3)</name>
+				<graph_template_id>hash_0000219aeb57be3588a293bd483b63a4927cba</graph_template_id>
+				<rrd>
+					<item_000>
+						<snmp_field_name>smart12</snmp_field_name>
+						<data_template_id>hash_010021706cc4eb368293951b01a6403480d998</data_template_id>
+						<data_template_rrd_id>hash_080021823fdfbfca4aa19fe4b0bc627a664b19</data_template_rrd_id>
+					</item_000>
+					<item_001>
+						<snmp_field_name>smart195</snmp_field_name>
+						<data_template_id>hash_010021d1ef6554e149929c1a28109db163e5b5</data_template_id>
+						<data_template_rrd_id>hash_0800210b45af1880bdba0d0d364bf28c0cff6d</data_template_rrd_id>
+					</item_001>
+					<item_002>
+						<snmp_field_name>smart1</snmp_field_name>
+						<data_template_id>hash_010021ce054151c35fc9d41ae21e7297bad1c8</data_template_id>
+						<data_template_rrd_id>hash_0800215a808abe2c7edf5352cf7fbc33626937</data_template_rrd_id>
+					</item_002>
+					<item_003>
+						<snmp_field_name>smart9</snmp_field_name>
+						<data_template_id>hash_010021f781f5120b615914209d66e740710076</data_template_id>
+						<data_template_rrd_id>hash_08002135ea296529861615deff25f5ada486dc</data_template_rrd_id>
+					</item_003>
+					<item_004>
+						<snmp_field_name>smart5</snmp_field_name>
+						<data_template_id>hash_0100212c6af149ce68d37986009740be1de504</data_template_id>
+						<data_template_rrd_id>hash_08002182f25161321bf2c64892d564a9a2fe62</data_template_rrd_id>
+					</item_004>
+					<item_005>
+						<snmp_field_name>smart187</snmp_field_name>
+						<data_template_id>hash_0100210144d79dc8105c2d0a7f6be844b1ede4</data_template_id>
+						<data_template_rrd_id>hash_0800211c5c00c3a95d3ddc3d4b4a9e57db9ed2</data_template_rrd_id>
+					</item_005>
+					<item_006>
+						<snmp_field_name>smart196</snmp_field_name>
+						<data_template_id>hash_010021032550bf008129287ae868d9730307eb</data_template_id>
+						<data_template_rrd_id>hash_080021aef8f06b157594ec1a6d194088f2a901</data_template_rrd_id>
+					</item_006>
+					<item_007>
+						<snmp_field_name>smart231</snmp_field_name>
+						<data_template_id>hash_010021c2d60953fe1ae5659fb32d6090163f5c</data_template_id>
+						<data_template_rrd_id>hash_080021ff49d0f3c7cd690599e9015258d50c90</data_template_rrd_id>
+					</item_007>
+					<item_008>
+						<snmp_field_name>smart230</snmp_field_name>
+						<data_template_id>hash_0100219ba9ac838a582478d29e95e4f9642768</data_template_id>
+						<data_template_rrd_id>hash_080021a742c1b527addde70384cf4d0177d14a</data_template_rrd_id>
+					</item_008>
+				</rrd>
+				<sv_graph>
+				</sv_graph>
+				<sv_data_source>
+				</sv_data_source>
+			</hash_110021f5501bf129b05ddbcb182e104045dc91>
 			<hash_110021e240e42f448dead0d0d2c652cdf5d53a>
 				<name>SMART Health (CF)</name>
 				<graph_template_id>hash_0000217b091a3cee95c6844c505c19d8c6bf27</graph_template_id>
@@ -750,7 +805,7 @@
 				<name>Data Source [smart_12]</name>
 				<description></description>
 				<column_name>task_item_id</column_name>
-				<items>hash_0000213382e7d3d14fd9b43b3801d5a835658b|hash_000021a3340617752a3ccfefad2a33385ad00b</items>
+				<items>hash_000021a3340617752a3ccfefad2a33385ad00b|hash_0000213382e7d3d14fd9b43b3801d5a835658b</items>
 			</hash_09002106d61248d59103326a33b39863c86b4e>
 			<hash_09002199e515ba377707692524c925f0412b30>
 				<name>Data Source [smart_199]</name>
@@ -762,7 +817,7 @@
 				<name>Data Source [smart_203]</name>
 				<description></description>
 				<column_name>task_item_id</column_name>
-				<items>hash_000021f8f8cb74ed03afdfafea388d5691c550|hash_000021de68ab7f0f01112a7a8ce7ae877f9815</items>
+				<items>hash_000021de68ab7f0f01112a7a8ce7ae877f9815|hash_000021f8f8cb74ed03afdfafea388d5691c550</items>
 			</hash_090021ab239286e9d7f2743032440c6574a44f>
 			<hash_0900210b12115bfa4438c2bcd78f24e3201023>
 				<name>Data Source [smart_232]</name>
@@ -774,7 +829,7 @@
 				<name>Data Source [smart_4]</name>
 				<description></description>
 				<column_name>task_item_id</column_name>
-				<items>hash_0000218353f14b2f36ba21e9cd3f940b217d44|hash_000021b16b22d734b9567725c825515663e09d</items>
+				<items>hash_000021b16b22d734b9567725c825515663e09d|hash_0000218353f14b2f36ba21e9cd3f940b217d44</items>
 			</hash_0900213fdfe424bc0824682a7ebd83094b0b11>
 			<hash_090021793783d4ae35ec235738d823e6197056>
 				<name>Data Source [smart_9]</name>
@@ -1201,7 +1256,7 @@
 				<name>Data Source [smart_199]</name>
 				<description></description>
 				<column_name>task_item_id</column_name>
-				<items>hash_000021293c6788272f9b775fd1a0e89cd455c1|hash_000021699241243c5331b69555117a86f6412b</items>
+				<items>hash_000021699241243c5331b69555117a86f6412b|hash_000021293c6788272f9b775fd1a0e89cd455c1</items>
 			</hash_090021e40780e31813890c621e372139a90fe4>
 			<hash_090021ce0b463768958fe0c28bae19ef79ae00>
 				<name>Data Source [smart_195]</name>
@@ -1482,7 +1537,7 @@
 			</hash_1000218c2e0ea7d36ba6cfac8d753444e71826>
 			<hash_1000212e0e91507cd9c38d5172a2606fcc5422>
 				<task_item_id>hash_08002127e332c6e57bd670a1ca085abf4db750</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>FFC3C0</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1508,7 +1563,7 @@
 			</hash_100021c3d388eaefa404359f0c07bbf7b4d614>
 			<hash_1000217c84ab192d5d4a8d6a6283f98ad8af94>
 				<task_item_id>hash_080021ad1a31a1fe78ccd852633ce56cef4ba0</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>DE0056</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1534,7 +1589,7 @@
 			</hash_1000211f7c49da7c2b8e0b319c7f0253bd032f>
 			<hash_10002180dfbbea9e5886abf5f92fd1c150fc84>
 				<task_item_id>hash_08002197a1354f4d32125aba086e9bf6a87229</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>AD3B6E</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1560,7 +1615,7 @@
 			</hash_1000218d5aa340cb5e32a00792a6308d74c776>
 			<hash_1000218337f4b242f08cec265f02d940bae09f>
 				<task_item_id>hash_08002144c67d22967cef9ffb5d2959d5cea16e</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>EACC00</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1586,7 +1641,7 @@
 			</hash_100021d0806813c329b67eec8d790b66522403>
 			<hash_100021491c50d2aeb65abbcf21d2d208959846>
 				<task_item_id>hash_08002154755668b1db35930a7a09893c5f74f1</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>D8ACE0</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1612,7 +1667,7 @@
 			</hash_10002133e24a90d0664c2d20137d0fd70142e4>
 			<hash_100021eddf85e2bc2505e713e74e721645f5f9>
 				<task_item_id>hash_080021e51925774829bd89347a8b9e78514356</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>FF5F00</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1638,7 +1693,7 @@
 			</hash_100021590cc4b10abf06926be15ae7a5709537>
 			<hash_100021a56eddada0385dfc61144e21a2572e1d>
 				<task_item_id>hash_080021252afb38933cfd61531bdfc66f1ad53c</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>00694A</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1664,7 +1719,7 @@
 			</hash_100021002587596731fa39772bf7a4a6000321>
 			<hash_100021b121d37d2b419635793a42d6b6ce5827>
 				<task_item_id>hash_0800213505c39a8cd1458236e25fe120695fb8</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>623465</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1690,7 +1745,7 @@
 			</hash_10002184bb23fab99eb0aabd2c97ad8d4a0b88>
 			<hash_10002166a842b6501bc59ca9b6769898512b91>
 				<task_item_id>hash_080021bc2316f007ebf31d5d601efeecddb530</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>8D00BA</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1716,7 +1771,7 @@
 			</hash_100021ccb11e2f341fa0d994c5d487c511ff58>
 			<hash_1000210c5cf09a5debcd40a790415dba19e265>
 				<task_item_id>hash_0800215c4137713fd143b68e6dcb5427e9ff6f</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>BCBEB3</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1872,7 +1927,7 @@
 			</hash_100021bd9abcc8ad2aa27d7bca99ce9c7445fd>
 			<hash_100021aef78ed05ed2be501c5eb5928aad0045>
 				<task_item_id>hash_080021c36f9a1a486f914136eebaa7718b1b6e</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>797C6E</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1898,7 +1953,7 @@
 			</hash_100021ea4c3033add156cbba8e79e656f43258>
 			<hash_1000215ed4f3c099f13ff110043a80b5f46f13>
 				<task_item_id>hash_080021a742c1b527addde70384cf4d0177d14a</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>6557D0</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1924,7 +1979,7 @@
 			</hash_100021e4d8fba04a76c305045787ae2d5449d3>
 			<hash_100021838875f5b84640214d96630e71ef6ede>
 				<task_item_id>hash_080021ff49d0f3c7cd690599e9015258d50c90</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>CCBB00</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1950,7 +2005,7 @@
 			</hash_1000216a7cd10f0c0e583636adf545515b2c8c>
 			<hash_10002136cefaf11d0e26755c522b4418d6ef83>
 				<task_item_id>hash_08002124c6cc1a034c1cc68e26e16526d09b2b</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>9FA4EE</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -1976,7 +2031,7 @@
 			</hash_1000218273bfaccae6d5fe00126715aee3a9f1>
 			<hash_1000210d13e2ab14b535c888eebe3e83cc9d02>
 				<task_item_id>hash_08002159525fc78d39f66d5ed48a954e80074e</task_item_id>
-				<color_id>000000</color_id>
+				<color_id>4668E4</color_id>
 				<alpha>FF</alpha>
 				<graph_type_id>5</graph_type_id>
 				<consolidation_function_id>1</consolidation_function_id>
@@ -2160,6 +2215,339 @@
 			</hash_090021aebc341d990932c71b792a393b797e4e>
 		</inputs>
 	</hash_000021f5d4ad5c471342918d49c63a7e9d2e55>
+	<hash_0000219aeb57be3588a293bd483b63a4927cba>
+		<name>SMART Health (AGILITY3)</name>
+		<graph>
+			<t_title></t_title>
+			<title>|host_description| - SMART Health - |query_smartDevices|</title>
+			<t_image_format_id></t_image_format_id>
+			<image_format_id>1</image_format_id>
+			<t_height></t_height>
+			<height>120</height>
+			<t_width></t_width>
+			<width>500</width>
+			<t_slope_mode></t_slope_mode>
+			<slope_mode>on</slope_mode>
+			<t_auto_scale></t_auto_scale>
+			<auto_scale>on</auto_scale>
+			<t_auto_scale_opts></t_auto_scale_opts>
+			<auto_scale_opts>2</auto_scale_opts>
+			<t_auto_scale_log></t_auto_scale_log>
+			<auto_scale_log></auto_scale_log>
+			<t_scale_log_units></t_scale_log_units>
+			<scale_log_units></scale_log_units>
+			<t_auto_scale_rigid></t_auto_scale_rigid>
+			<auto_scale_rigid>on</auto_scale_rigid>
+			<t_auto_padding></t_auto_padding>
+			<auto_padding>on</auto_padding>
+			<t_export></t_export>
+			<export>on</export>
+			<t_upper_limit></t_upper_limit>
+			<upper_limit>100</upper_limit>
+			<t_lower_limit></t_lower_limit>
+			<lower_limit>0</lower_limit>
+			<t_base_value></t_base_value>
+			<base_value>1000</base_value>
+			<t_unit_value></t_unit_value>
+			<unit_value></unit_value>
+			<t_unit_exponent_value></t_unit_exponent_value>
+			<unit_exponent_value>0</unit_exponent_value>
+			<t_vertical_label></t_vertical_label>
+			<vertical_label>Life Remaining %</vertical_label>
+		</graph>
+		<items>
+			<hash_100021fb4795615f17686214490773a5101295>
+				<task_item_id>hash_0800215a808abe2c7edf5352cf7fbc33626937</task_item_id>
+				<color_id>FFAB00</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>5</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Raw Read Errors</text_format>
+				<hard_return></hard_return>
+				<sequence>1</sequence>
+			</hash_100021fb4795615f17686214490773a5101295>
+			<hash_100021c6d4c10cb4a77b745d2a091c251eaad7>
+				<task_item_id>hash_0800215a808abe2c7edf5352cf7fbc33626937</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format></text_format>
+				<hard_return>on</hard_return>
+				<sequence>2</sequence>
+			</hash_100021c6d4c10cb4a77b745d2a091c251eaad7>
+			<hash_100021c918153e80c3ca6c7af4bb8bb4f87b77>
+				<task_item_id>hash_08002182f25161321bf2c64892d564a9a2fe62</task_item_id>
+				<color_id>EA8F00</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>5</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Reallocated Sectors</text_format>
+				<hard_return></hard_return>
+				<sequence>7</sequence>
+			</hash_100021c918153e80c3ca6c7af4bb8bb4f87b77>
+			<hash_1000218b84cd1fe3da0db1c0cfe73d0f1c0433>
+				<task_item_id>hash_08002182f25161321bf2c64892d564a9a2fe62</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format></text_format>
+				<hard_return>on</hard_return>
+				<sequence>8</sequence>
+			</hash_1000218b84cd1fe3da0db1c0cfe73d0f1c0433>
+			<hash_1000210975266133cc02b1bd411bef693298cc>
+				<task_item_id>hash_08002135ea296529861615deff25f5ada486dc</task_item_id>
+				<color_id>35962B</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>5</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Power on Hours</text_format>
+				<hard_return></hard_return>
+				<sequence>9</sequence>
+			</hash_1000210975266133cc02b1bd411bef693298cc>
+			<hash_100021822cf0d985448a6a666ccf2100002344>
+				<task_item_id>hash_08002135ea296529861615deff25f5ada486dc</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format></text_format>
+				<hard_return>on</hard_return>
+				<sequence>10</sequence>
+			</hash_100021822cf0d985448a6a666ccf2100002344>
+			<hash_1000212ab552dc5959924d519fe1bb837cf12e>
+				<task_item_id>hash_080021823fdfbfca4aa19fe4b0bc627a664b19</task_item_id>
+				<color_id>6EA100</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>5</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Power CycleCount</text_format>
+				<hard_return></hard_return>
+				<sequence>11</sequence>
+			</hash_1000212ab552dc5959924d519fe1bb837cf12e>
+			<hash_100021623073fe1b724d0da60f3fdb60c34485>
+				<task_item_id>hash_080021823fdfbfca4aa19fe4b0bc627a664b19</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format></text_format>
+				<hard_return>on</hard_return>
+				<sequence>12</sequence>
+			</hash_100021623073fe1b724d0da60f3fdb60c34485>
+			<hash_1000210a3f26b7b4fb4d71765f0140785e8553>
+				<task_item_id>hash_0800211c5c00c3a95d3ddc3d4b4a9e57db9ed2</task_item_id>
+				<color_id>4123A1</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>5</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Reported Uncorrectable</text_format>
+				<hard_return></hard_return>
+				<sequence>35</sequence>
+			</hash_1000210a3f26b7b4fb4d71765f0140785e8553>
+			<hash_100021f825b7f1f7db22aecf9532dcf68f1b02>
+				<task_item_id>hash_0800211c5c00c3a95d3ddc3d4b4a9e57db9ed2</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format></text_format>
+				<hard_return>on</hard_return>
+				<sequence>36</sequence>
+			</hash_100021f825b7f1f7db22aecf9532dcf68f1b02>
+			<hash_10002123b41b642b6b978cfae96dad44e5f04e>
+				<task_item_id>hash_0800210b45af1880bdba0d0d364bf28c0cff6d</task_item_id>
+				<color_id>00BED9</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>5</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>ECC Recovered</text_format>
+				<hard_return></hard_return>
+				<sequence>37</sequence>
+			</hash_10002123b41b642b6b978cfae96dad44e5f04e>
+			<hash_100021ceb7f6aab0065606f2ee1c44b8321357>
+				<task_item_id>hash_0800210b45af1880bdba0d0d364bf28c0cff6d</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format></text_format>
+				<hard_return>on</hard_return>
+				<sequence>38</sequence>
+			</hash_100021ceb7f6aab0065606f2ee1c44b8321357>
+			<hash_1000213236f0ee48a57219ff87bfd372bfc8ad>
+				<task_item_id>hash_080021aef8f06b157594ec1a6d194088f2a901</task_item_id>
+				<color_id>F24AC8</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>5</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Reallocated Event Count</text_format>
+				<hard_return></hard_return>
+				<sequence>39</sequence>
+			</hash_1000213236f0ee48a57219ff87bfd372bfc8ad>
+			<hash_100021078212b709ada2602a7c96834a413e8a>
+				<task_item_id>hash_080021aef8f06b157594ec1a6d194088f2a901</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format></text_format>
+				<hard_return>on</hard_return>
+				<sequence>40</sequence>
+			</hash_100021078212b709ada2602a7c96834a413e8a>
+			<hash_1000211ea9486c2cfa332915bd8e152853ec5c>
+				<task_item_id>hash_080021a742c1b527addde70384cf4d0177d14a</task_item_id>
+				<color_id>6557D0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>5</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>Life Curve Status</text_format>
+				<hard_return></hard_return>
+				<sequence>45</sequence>
+			</hash_1000211ea9486c2cfa332915bd8e152853ec5c>
+			<hash_100021eb1bd5696820984618882c0bc43112a7>
+				<task_item_id>hash_080021a742c1b527addde70384cf4d0177d14a</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format></text_format>
+				<hard_return>on</hard_return>
+				<sequence>46</sequence>
+			</hash_100021eb1bd5696820984618882c0bc43112a7>
+			<hash_100021bdd90c599d06e2038822b60c2b3b380f>
+				<task_item_id>hash_080021ff49d0f3c7cd690599e9015258d50c90</task_item_id>
+				<color_id>CCBB00</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>5</graph_type_id>
+				<consolidation_function_id>1</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format>SSD Life Left</text_format>
+				<hard_return></hard_return>
+				<sequence>47</sequence>
+			</hash_100021bdd90c599d06e2038822b60c2b3b380f>
+			<hash_1000210d9e8f20eef8b91ad35f008b0278c920>
+				<task_item_id>hash_080021ff49d0f3c7cd690599e9015258d50c90</task_item_id>
+				<color_id>0</color_id>
+				<alpha>FF</alpha>
+				<graph_type_id>9</graph_type_id>
+				<consolidation_function_id>4</consolidation_function_id>
+				<cdef_id>0</cdef_id>
+				<value></value>
+				<gprint_id>hash_060021e9c43831e54eca8069317a2ce8c6f751</gprint_id>
+				<text_format></text_format>
+				<hard_return>on</hard_return>
+				<sequence>48</sequence>
+			</hash_1000210d9e8f20eef8b91ad35f008b0278c920>
+		</items>
+		<inputs>
+			<hash_090021c65d5c35dd9e7e5d1bcd1caaee17a1a9>
+				<name>Data Source [smart_1]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_000021fb4795615f17686214490773a5101295|hash_000021c6d4c10cb4a77b745d2a091c251eaad7</items>
+			</hash_090021c65d5c35dd9e7e5d1bcd1caaee17a1a9>
+			<hash_090021318ca1df7fcab8833f3439219909af3e>
+				<name>Data Source [smart_231]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_000021bdd90c599d06e2038822b60c2b3b380f|hash_0000210d9e8f20eef8b91ad35f008b0278c920</items>
+			</hash_090021318ca1df7fcab8833f3439219909af3e>
+			<hash_090021f9bf75d24b708a8d88acd625187f2a5e>
+				<name>Data Source [smart_230]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_0000211ea9486c2cfa332915bd8e152853ec5c|hash_000021eb1bd5696820984618882c0bc43112a7</items>
+			</hash_090021f9bf75d24b708a8d88acd625187f2a5e>
+			<hash_0900217e76070ea36d97bdee55fbd5316ef2c7>
+				<name>Data Source [smart_5]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_0000218b84cd1fe3da0db1c0cfe73d0f1c0433|hash_000021c918153e80c3ca6c7af4bb8bb4f87b77</items>
+			</hash_0900217e76070ea36d97bdee55fbd5316ef2c7>
+			<hash_0900217137a0cb4532115b68eff9451f6a88eb>
+				<name>Data Source [smart_9]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_0000210975266133cc02b1bd411bef693298cc|hash_000021822cf0d985448a6a666ccf2100002344</items>
+			</hash_0900217137a0cb4532115b68eff9451f6a88eb>
+			<hash_090021215ed34b42ce4cfe603bf104ab113146>
+				<name>Data Source [smart_12]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_0000212ab552dc5959924d519fe1bb837cf12e|hash_000021623073fe1b724d0da60f3fdb60c34485</items>
+			</hash_090021215ed34b42ce4cfe603bf104ab113146>
+			<hash_0900218bac80024f0d53d701ed1e93d01cd26e>
+				<name>Data Source [smart_187]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_0000210a3f26b7b4fb4d71765f0140785e8553|hash_000021f825b7f1f7db22aecf9532dcf68f1b02</items>
+			</hash_0900218bac80024f0d53d701ed1e93d01cd26e>
+			<hash_0900215a84dd3190fd3b762da4799a7c9021dc>
+				<name>Data Source [smart_195]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_00002123b41b642b6b978cfae96dad44e5f04e|hash_000021ceb7f6aab0065606f2ee1c44b8321357</items>
+			</hash_0900215a84dd3190fd3b762da4799a7c9021dc>
+			<hash_0900218d7f57d83f6bbf0a31ca73b22983332c>
+				<name>Data Source [smart_196]</name>
+				<description></description>
+				<column_name>task_item_id</column_name>
+				<items>hash_0000213236f0ee48a57219ff87bfd372bfc8ad|hash_000021078212b709ada2602a7c96834a413e8a</items>
+			</hash_0900218d7f57d83f6bbf0a31ca73b22983332c>
+		</inputs>
+	</hash_0000219aeb57be3588a293bd483b63a4927cba>
 	<hash_0100216d928e70f55bae3f94ecac65f2677b5f>
 		<name>SMART R190 Airflow Temperature</name>
 		<ds>
@@ -2272,7 +2660,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>1000</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -2364,7 +2752,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -2456,7 +2844,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -2548,7 +2936,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -2640,7 +3028,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -2732,7 +3120,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -2824,7 +3212,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -2916,7 +3304,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -3008,7 +3396,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -3100,7 +3488,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -3192,7 +3580,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -3284,7 +3672,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -3376,7 +3764,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -3468,7 +3856,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -3560,7 +3948,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -3652,7 +4040,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -3744,7 +4132,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -3836,7 +4224,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -3928,7 +4316,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -4020,7 +4408,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -4112,7 +4500,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -4204,7 +4592,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -4296,7 +4684,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -4388,7 +4776,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -4480,7 +4868,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -4572,7 +4960,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -4664,7 +5052,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -4756,7 +5144,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -4848,7 +5236,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -4940,7 +5328,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>
@@ -5032,7 +5420,7 @@
 				<t_rrd_minimum></t_rrd_minimum>
 				<rrd_minimum>0</rrd_minimum>
 				<t_rrd_maximum></t_rrd_maximum>
-				<rrd_maximum>100</rrd_maximum>
+				<rrd_maximum>102</rrd_maximum>
 				<t_data_source_type_id></t_data_source_type_id>
 				<data_source_type_id>1</data_source_type_id>
 				<t_rrd_heartbeat></t_rrd_heartbeat>

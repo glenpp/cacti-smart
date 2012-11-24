@@ -24,34 +24,34 @@ extend smart10 /etc/snmp/smart-generic 10
 # hdd, ssd, cf	#6EA100
 # 12 Power_Cycle_Count
 extend smart12 /etc/snmp/smart-generic 12
-# *[I]ssd
+# *[I]ssd		#FFC3C0
 # 170 Reserve_Block_Count
 extend smart170 /etc/snmp/smart-generic 170
-# [I-O]ssd
+# [I-O]ssd		#DE0056
 # 171 Program_Fail_Count      
 extend smart171 /etc/snmp/smart-generic 171
-# [I-O]ssd
+# [I-O]ssd		#AD3B6E
 # 172 Erase_Fail_Count
 extend smart172 /etc/snmp/smart-generic 172
-# [*S-O]ssd
+# [*S-O]ssd		#EACC00
 # 177 Wear_Leveling_Count
 extend smart177 /etc/snmp/smart-generic 177
-# *[S]ssd
+# *[S]ssd		#D8ACE0
 # 178 Used_Rsvd_Blk_Cnt_Chip
 extend smart178 /etc/snmp/smart-generic 178
-# *[S]ssd
+# *[S]ssd		#FF5F00
 # 179 Used_Rsvd_Blk_Cnt_Tot
 extend smart179 /etc/snmp/smart-generic 179
-# *[S]ssd
+# *[S]ssd		#00694A
 # 180 Unused_Rsvd_Blk_Cnt_Tot
 extend smart180 /etc/snmp/smart-generic 180
-# [S-O]ssd
+# [S-O]ssd		#623465
 # 181 Program_Fail_Cnt_Total
 extend smart181 /etc/snmp/smart-generic 181
-# [S-O]ssd
+# [S-O]ssd		#8D00BA
 # 182 Erase_Fail_Count_Total
 extend smart182 /etc/snmp/smart-generic 182
-# *[S]ssd
+# *[S]ssd		#BCBEB3
 # 183 Runtime_Bad_Block
 extend smart183 /etc/snmp/smart-generic 183
 # *[BS]hdd, *[I]ssd	#DA4725
@@ -81,13 +81,13 @@ extend smart199 /etc/snmp/smart-generic 199
 # cf				#942D0C
 # 203 Run_Out_Cancel
 extend smart203 /etc/snmp/smart-generic 203
-# [I]ssd
+# [I]ssd			#797C6E
 # 226 Workld_Media_Wear_Indic
 extend smart226 /etc/snmp/smart-generic 226
-# *[O]ssd
+# *[O]ssd			#6557D0
 # 230 Life_Curve_Status
 extend smart230 /etc/snmp/smart-generic 230
-# *[O]ssd				#?
+# *[O]ssd				#CCBB00
 # 231 SSD_Life_Left
 extend smart231 /etc/snmp/smart-generic 231
 # *[SI]ssd, cf			#9FA4EE
