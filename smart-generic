@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
-# Copyright (C) 2009-2011 Glen Pitt-Pladdy
+# Copyright (C) 2009-2012 Glen Pitt-Pladdy
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -26,9 +26,12 @@ use warnings;
 # Put "worst" on the command line and the smallest gap to threshold of all
 # parameters will be output.
 #
-# Version 20121124
+# Version 20121127
 
 my $FILES = '/var/local/snmp/smart';
+# how should we index/identify devices
+my $INDEX = 'dev';
+#my $INDEX = 'serial';
 
 # By default we assume max of 100 and scale against the threshold
 # For special cases we have a database of parameters that need scaling differently
@@ -36,19 +39,19 @@ my $FILES = '/var/local/snmp/smart';
 my %SCALEBYFAMILY = (
 	'Seagate Barracuda 7200.10' => {
 #		7 => 2,		# Seek Errors has Thresh 30, but still sits mid-range on all drives
-		195 => 1.429,	# ECC Recovered seems to sit about 70 on all drives
+		195 => 1.429,	# ECC Recovered seems to sit about 70 on all drives TODO does this relate to capacity?
 		199 => 0.5,		# UDMA CRC Errors seems to sit about 200 on all drives
 	},
 	'Seagate Barracuda 7200.12' => {
 		1 => 0.8772,	# Raw Read Errors seems to start at 120 with thresh 6... on some
 #		7 => 2,		# Seek Errors has Thresh 30, but still sits mid-range on all drives
-		195 => 2,		# ECC Recovered seems to sit about 50 on all drives
+		195 => 2,		# ECC Recovered seems to sit about 50 on all drives TODO does this relate to capacity?
 		199 => 0.5,		# UDMA CRC Errors seems to sit about 200 on all drives
 	},
 	'Seagate Barracuda Green (Adv. Format)' => {
 		1 => 0.8772,	# Raw Read Errors seems to start at 120 with thresh 6... on some
 #		7 => 2,		# Seek Errors has Thresh 30, but still sits mid-range on all drives
-		195 => 4,		# ECC Recovered seems to sit about 25 on all drives
+		195 => 4,		# ECC Recovered seems to sit about 25 on all drives TODO does this relate to capacity?
 		199 => 0.5,		# UDMA CRC Errors seems to sit about 200 on all drives
 	},
 	'WD Caviar' => {	# Generic Cav
@@ -59,17 +62,17 @@ my %SCALEBYFAMILY = (
 		199 => 0.5,		# UDMA CRC Errors seems to sit at 200
 	},
 	'SandForce Driven SSDs' => {
-		1 => 1.429,		# Raw Read Errors seems to start at 120 with thresh 50... on some
+#		1 => 1.429,		# Raw Read Errors seems to start at 120 with thresh 50... on some
 		171 => 'U',		# Program_Fail_Count is 0
 		172 => 'U',		# Erase_Fail_Count is 0
 		174 => 'U',		# Unexpect_Power_Loss_Ct is 0
 		177 => 'U',		# Wear_Leveling_Count is 0
 		181 => 'U',		# Program_Fail_Cnt_Total is 0
 		182 => 'U',		# Erase_Fail_Count_Total is 0
-#		195 => 0.833,	# ECC Recovered seems to start at 120... on some
-#		196 => 0.833,	# Reallocated Events seems to start at 120... on some
-#		201 => 0.833,	# Soft Read Errors seems to start at 120.... on some
-#		204 => 0.833,	# Soft ECC Correction seems to start at 120.... on some
+		195 => 0.8333,	# ECC Recovered seems to start at 120... on some
+#		196 => 0.8333,	# Reallocated Events seems to start at 120... on some
+		201 => 0.8333,	# Soft Read Errors seems to start at 120.... on some
+		204 => 0.8333,	# Soft ECC Correction seems to start at 120.... on some
 		233 => 'U',		# Media_Wearout_Indicator is 0
 		234 => 'U',		# Unknown_Attribute / SandForce_Internal is 0
 		241 => 'U',		# Lifetime_Writes_GiB is 0
@@ -80,6 +83,7 @@ $SCALEBYFAMILY{'Seagate Barracuda 7200.12 family'} = $SCALEBYFAMILY{'Seagate Bar
 $SCALEBYFAMILY{'Western Digital Caviar Black'} = $SCALEBYFAMILY{'WD Caviar'};
 $SCALEBYFAMILY{'Western Digital Caviar Blue Serial ATA'} = $SCALEBYFAMILY{'WD Caviar'};
 $SCALEBYFAMILY{'Western Digital Caviar Green'} = $SCALEBYFAMILY{'WD Caviar'};
+# specific models or aliases for families
 my %SCALEBYMODEL = (
 	'ST3250310AS' => $SCALEBYFAMILY{'Seagate Barracuda 7200.10'},
 	'ST3500418AS' => $SCALEBYFAMILY{'Seagate Barracuda 7200.12'},	# belts & braces
@@ -96,6 +100,7 @@ my %SCALEBYMODEL = (
 		199 => 0.395,	# UDMA CRC Errors seems to start a 253... perhaps 255?
 	},
 );
+$SCALEBYMODEL{'SAMSUNG SSD 830 Series'} = $SCALEBYMODEL{'SAMSUNG SSD PM830 FDE 2.5" 7mm 256GB'};
 
 
 
@@ -103,15 +108,13 @@ my $param = shift @ARGV;
 my $devicelist = 0;
 my $worst = 0;
 my $raw;
-if ( $param eq 'devices' ) {
-	$devicelist = 1;
-} elsif ( $param =~ /^worst$/i ) {
+if ( $param =~ /^worst$/i ) {
 	$worst = 1;
 } elsif ( $param =~ s/^[rR](\d+)$/$1/ ) {
 	$raw = 1;
 } elsif ( $param =~ /^\d+$/ ) {
 	$raw = 0;
-} elsif ( lc $param eq 'description' ) {
+} elsif ( lc $param eq 'description' or lc $param eq 'devices' ) {
 	# nothing to do
 } else {
 	die "FATAL - need the numeric parameter or 'description' to show\n";
@@ -121,17 +124,10 @@ if ( $param eq 'devices' ) {
 opendir LS, "/dev" or die "FATAL - can't list /dev: $!\n";
 my @drives;
 while ( defined ( my $drive = readdir LS ) ) {
-	if ( $drive !~ /^sd[a-z]$/ ) { next; }	# skip non drives
+	if ( $drive !~ /^sd[a-z]+$/ ) { next; }	# skip non drives
 	push @drives, $drive
 }
 closedir LS;
-
-if ( $devicelist ) {
-	foreach my $drive (sort @drives) {
-		print "/dev/$drive\n";
-	}
-	exit 0;
-}
 
 foreach my $drive (sort @drives) {
 	# deal with missing files
@@ -169,12 +165,23 @@ foreach my $drive (sort @drives) {
 			$capacity = "$cap $unit"
 		}
 	}
-	if ( lc $param eq 'description' ) {
+	if ( lc $param eq 'devices' ) {
+		if ( $INDEX eq 'dev' ) {
+			print "$drive\n";
+		} elsif ( $INDEX eq 'serial' ) {
+			print "$serial\n";
+		}
+		next;
+	} elsif ( lc $param eq 'description' ) {
 		my $description = '';
 		if ( defined $model ) { $description .= " $model"; }
-		if ( defined $serial ) { $description .= " (SN $serial)"; }
+		if ( $INDEX eq 'dev' ) {
+			if ( defined $serial ) { $description .= " (SN $serial)"; }
+		} elsif ( $INDEX eq 'serial' ) {
+			$description .= " ($drive)";
+		}
 		if ( defined $firmware ) { $description .= " [$firmware]"; }
-		if ( defined $capacity ) { $description .= " $capacity" }
+		if ( defined $capacity ) { $description .= " $capacity"; }
 		$description =~ s/^\s+//;
 		print "$description\n";
 		next;
@@ -234,7 +241,7 @@ foreach my $drive (sort @drives) {
 				$health *= 100 / ( 100 - $fields[5] );
 			}
 			# limit the parameter to 101 - that's for anything >100
-			if ( $health > 100 ) { $health = 100; }
+			if ( $health > 100 ) { $health = 101; }
 			print "$health\n";
 			last;
 		}
