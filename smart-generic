@@ -35,7 +35,7 @@ my $INDEX = 'dev';
 
 # By default we assume max of 100 and scale against the threshold
 # For special cases we have a database of parameters that need scaling differently
-# By setting the scale to U that will be returned instead - ie. hides invalid params
+# By setting the scale to NA that will be returned instead - ie. hides invalid params
 my %SCALEBYFAMILY = (
 	'Seagate Barracuda 7200.10' => {
 #		7 => 2,		# Seek Errors has Thresh 30, but still sits mid-range on all drives
@@ -63,20 +63,20 @@ my %SCALEBYFAMILY = (
 	},
 	'SandForce Driven SSDs' => {
 #		1 => 1.429,		# Raw Read Errors seems to start at 120 with thresh 50... on some
-		171 => 'U',		# Program_Fail_Count is 0
-		172 => 'U',		# Erase_Fail_Count is 0
-		174 => 'U',		# Unexpect_Power_Loss_Ct is 0
-		177 => 'U',		# Wear_Leveling_Count is 0
-		181 => 'U',		# Program_Fail_Cnt_Total is 0
-		182 => 'U',		# Erase_Fail_Count_Total is 0
+		171 => 'NA',	# Program_Fail_Count is 0
+		172 => 'NA',	# Erase_Fail_Count is 0
+		174 => 'NA',	# Unexpect_Power_Loss_Ct is 0
+		177 => 'NA',	# Wear_Leveling_Count is 0
+		181 => 'NA',	# Program_Fail_Cnt_Total is 0
+		182 => 'NA',	# Erase_Fail_Count_Total is 0
 		195 => 0.8333,	# ECC Recovered seems to start at 120... on some
 #		196 => 0.8333,	# Reallocated Events seems to start at 120... on some
 		201 => 0.8333,	# Soft Read Errors seems to start at 120.... on some
 		204 => 0.8333,	# Soft ECC Correction seems to start at 120.... on some
-		233 => 'U',		# Media_Wearout_Indicator is 0
-		234 => 'U',		# Unknown_Attribute / SandForce_Internal is 0
-		241 => 'U',		# Lifetime_Writes_GiB is 0
-		242 => 'U',		# Lifetime_Reads_GiB is 0
+		233 => 'NA',	# Media_Wearout_Indicator is 0
+		234 => 'NA',	# Unknown_Attribute / SandForce_Internal is 0
+		241 => 'NA',	# Lifetime_Writes_GiB is 0
+		242 => 'NA',	# Lifetime_Reads_GiB is 0
 	},
 );
 $SCALEBYFAMILY{'Seagate Barracuda 7200.12 family'} = $SCALEBYFAMILY{'Seagate Barracuda 7200.12'};	# some smartctl versions say "family"
@@ -200,8 +200,8 @@ foreach my $drive (sort @drives) {
 				$health *= $SCALEBYFAMILY{$family}{$param}
 			} elsif ( defined $model
 				and exists $SCALEBYMODEL{$model}{$param} ) {
-				if ( $SCALEBYMODEL{$model}{$param} eq 'U' ) {
-					$health = 'U';
+				if ( $SCALEBYMODEL{$model}{$param} eq 'NA' ) {
+					$health = 'NA';
 				} else {
 					$health *= $SCALEBYMODEL{$model}{$param}
 				}
@@ -221,7 +221,7 @@ foreach my $drive (sort @drives) {
 			print "$health\n";
 		} else {
 			if ( $fields[3] eq '---' or $fields[5] eq '---' ) {
-				print "U\n";
+				print "NA\n";
 				last;
 			}
 			# how close are we to threshold?
@@ -231,8 +231,8 @@ foreach my $drive (sort @drives) {
 				$health *= $SCALEBYFAMILY{$family}{$param};
 			} elsif ( defined $model
 				and exists $SCALEBYMODEL{$model}{$param} ) {
-				if ( $SCALEBYMODEL{$model}{$param} eq 'U' ) {
-					$health = 'U';
+				if ( $SCALEBYMODEL{$model}{$param} eq 'NA' ) {
+					$health = 'NA';
 				} else {
 					$health *= $SCALEBYMODEL{$model}{$param};
 				}
@@ -241,7 +241,7 @@ foreach my $drive (sort @drives) {
 				$health *= 100 / ( 100 - $fields[5] );
 			}
 			# limit the parameter to 101 - that's for anything >100
-			if ( $health > 100 ) { $health = 101; }
+			if ( $health ne 'NA' and $health > 100 ) { $health = 101; }
 			print "$health\n";
 			last;
 		}
