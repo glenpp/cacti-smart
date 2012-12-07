@@ -1,3 +1,7 @@
+# ssd: I=Intel S=Samsung O=OCZ
+# hdd: B=Barracuda(Seagate) C=Caviar(WD) S=Samsung
+# -X = remove/hide parameter
+# *X = pre-fail parameter
 extend smartdevices /etc/snmp/smart-generic devices
 extend smartdescriptions /etc/snmp/smart-generic description
 # *hdd *[O]ssd		#FFAB00
@@ -96,6 +100,12 @@ extend smart232 /etc/snmp/smart-generic 232
 # [I-O]ssd, cf			#4668E4
 # 233 Media_Wearout_Indicator
 extend smart233 /etc/snmp/smart-generic 233
+# [S]ssd			#EE5019
+# 235 Power Recovery Count
+extend smart235 /etc/snmp/smart-generic 235
+# [SI-O]ssd			#157419
+# 241 Total_LBAs_Written
+extend smart241 /etc/snmp/smart-generic 241
 
 
 
