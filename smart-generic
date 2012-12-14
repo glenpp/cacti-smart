@@ -26,7 +26,7 @@ use warnings;
 # Put "worst" on the command line and the smallest gap to threshold of all
 # parameters will be output.
 #
-# Version 20121207
+# Version 20121214
 
 my $FILES = '/var/local/snmp/smart';
 # how should we index/identify devices
@@ -95,15 +95,16 @@ my %SCALEBYMODEL = (
 	'WDC WD10EAVS-00D7B1' => $SCALEBYFAMILY{'Western Digital Caviar Green'},	# belts & braces
 	'WDC WD20EARS-00MVWB0' => $SCALEBYFAMILY{'Western Digital Caviar Green'},	# belts & braces
 	'OCZ-AGILITY3' => $SCALEBYFAMILY{'SandForce Driven SSDs'},
-	'SAMSUNG SSD PM830 FDE 2.5" 7mm 256GB' => {
+	'SAMSUNG SSD 830 Series' => {
 		195 => 0.5,		# ECC Recovered seems to start at 200
-		199 => 0.395,	# UDMA CRC Errors seems to start a 253... perhaps 255?
+		199 => 0.39525,	# UDMA CRC Errors seems to start a 253... perhaps 255?
 	},
 );
-$SCALEBYMODEL{'SAMSUNG SSD 830 Series'} = $SCALEBYMODEL{'SAMSUNG SSD PM830 FDE 2.5" 7mm 256GB'};
+$SCALEBYMODEL{'SAMSUNG SSD PM830 FDE 2.5" 7mm 256GB'} = $SCALEBYMODEL{'SAMSUNG SSD 830 Series'};
 
 
 
+# figure out what is being requested
 my $param = shift @ARGV;
 my $devicelist = 0;
 my $worst = 0;
@@ -240,8 +241,8 @@ foreach my $drive (sort @drives) {
 				# we assume we can scale against 100
 				$health *= 100 / ( 100 - $fields[5] );
 			}
-			# limit the parameter to 101 - that's for anything >100
-			if ( $health ne 'NA' and $health > 100 ) { $health = 101; }
+			# limit the parameter to 101
+			if ( $health ne 'NA' and $health > 101 ) { $health = 101; }
 			print "$health\n";
 			last;
 		}
