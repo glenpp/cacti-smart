@@ -1,0 +1,34 @@
+#!/bin/sh
+# Copyright (C) 2012  Glen Pitt-Pladdy
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+#
+#
+# See: http://www.pitt-pladdy.com/blog/_20091031-144604_0000_SMART_stats_on_Cacti_via_SNMP_/
+#
+# Version 20121223
+
+
+# where to keep the files
+STORE=/var/local/snmp
+
+
+# update smart parameters
+for devfull in /dev/sd?; do
+	dev=`basename $devfull`
+	/usr/sbin/smartctl -n idle -a $devfull >$STORE/smart-$dev.TMP
+	mv $STORE/smart-$dev.TMP $STORE/smart-$dev
+done
+
