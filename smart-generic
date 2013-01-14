@@ -26,7 +26,7 @@ use warnings;
 # Put "worst" on the command line and the smallest gap to threshold of all
 # parameters will be output.
 #
-# Version 20121214
+# Version 20130114
 
 my $FILES = '/var/local/snmp/smart';
 # how should we index/identify devices
@@ -58,8 +58,13 @@ my %SCALEBYFAMILY = (
 		1 => 0.671,		# Raw Read Errors seems to sit about 200 with thresh 51
 		3 => 0.478,		# Spin Up Time seems to start about 230 with thresh 21
 		5 => 1.667,		# Reallocated Sectors seems to sit at 200 with tresh 140
+		192 => 0.5,		# Power-Off_Retract_Count seems to sit at 200
+		193 => 0.5,		# Load_Cycle_Count seems to sit at 200
 		196 => 0.5,		# Reallocated Events seems to sit at 200
+		197 => 0.5,		# Current_Pending_Sector seems to sit at 200
+		198 => 0.5,		# Offline_Uncorrectable on Cav Black/Blue/Greens seems to sit at 200, others start 100
 		199 => 0.5,		# UDMA CRC Errors seems to sit at 200
+		200 => 0.5,		# Multi_Zone_Error_Rate seems to sit about 200
 	},
 	'SandForce Driven SSDs' => {
 #		1 => 1.429,		# Raw Read Errors seems to start at 120 with thresh 50... on some
@@ -83,6 +88,9 @@ $SCALEBYFAMILY{'Seagate Barracuda 7200.12 family'} = $SCALEBYFAMILY{'Seagate Bar
 $SCALEBYFAMILY{'Western Digital Caviar Black'} = $SCALEBYFAMILY{'WD Caviar'};
 $SCALEBYFAMILY{'Western Digital Caviar Blue Serial ATA'} = $SCALEBYFAMILY{'WD Caviar'};
 $SCALEBYFAMILY{'Western Digital Caviar Green'} = $SCALEBYFAMILY{'WD Caviar'};
+# Newer WD Cav drives (ABYS/EURS types)
+$SCALEBYFAMILY{'WD Caviar 2011+'} = $SCALEBYFAMILY{'WD Caviar'};
+$SCALEBYFAMILY{'WD Caviar 2011+'}{198} = 1;	# on this model it sits around 100 normally
 # specific models or aliases for families
 my %SCALEBYMODEL = (
 	'ST3250310AS' => $SCALEBYFAMILY{'Seagate Barracuda 7200.10'},
@@ -94,6 +102,8 @@ my %SCALEBYMODEL = (
 	'WDC WD5000AAKS-00A7B0' => $SCALEBYFAMILY{'Western Digital Caviar Blue Serial ATA'},	# belts & braces
 	'WDC WD10EAVS-00D7B1' => $SCALEBYFAMILY{'Western Digital Caviar Green'},	# belts & braces
 	'WDC WD20EARS-00MVWB0' => $SCALEBYFAMILY{'Western Digital Caviar Green'},	# belts & braces
+	# newer Cav GreenPower 3TB
+	'WDC WD30EURS-63SPKY0' => $SCALEBYFAMILY{'WD Caviar 2011+'},
 	'OCZ-AGILITY3' => $SCALEBYFAMILY{'SandForce Driven SSDs'},
 	'SAMSUNG SSD 830 Series' => {
 		195 => 0.5,		# ECC Recovered seems to start at 200
@@ -101,6 +111,7 @@ my %SCALEBYMODEL = (
 	},
 );
 $SCALEBYMODEL{'SAMSUNG SSD PM830 FDE 2.5" 7mm 256GB'} = $SCALEBYMODEL{'SAMSUNG SSD 830 Series'};
+$SCALEBYMODEL{'GB0250EAFYK'} = $SCALEBYFAMILY{'WD Caviar 2011+'};	# actually WD2502ABYS rebranded/different firmware
 
 
 
