@@ -26,7 +26,7 @@ use warnings;
 # Put "worst" on the command line and the smallest gap to threshold of all
 # parameters will be output.
 #
-# Version 20130114
+# Version 20130420
 
 my $FILES = '/var/local/snmp/smart';
 # how should we index/identify devices
@@ -65,6 +65,17 @@ my %SCALEBYFAMILY = (
 		198 => 0.5,		# Offline_Uncorrectable on Cav Black/Blue/Greens seems to sit at 200, others start 100
 		199 => 0.5,		# UDMA CRC Errors seems to sit at 200
 		200 => 0.5,		# Multi_Zone_Error_Rate seems to sit about 200
+	},
+	'SAMSUNG SpinPoint F3 EG' => {
+		2 => 0.39683,	# Throughput_Performance seems to start at 252
+		10 => 0.39683,	# Spin_Retry_Count seems to start at 252
+		11 => 0.39683,	# Calibration_Retry_Count seems to start at 252
+		191 => 0.39683,	# G-Sense_Error_Rate seems to start at 252
+		192 => 0.39683,	# Power-Off_Retract_Count seems to start at 252
+		196 => 0.39683,	# Reallocated_Event_Count seems to start at 252
+		197 => 0.39683,	# Current_Pending_Sector seems to start at 252
+		198 => 0.39683,	# Offline_Uncorrectable seems to start at 252
+		223 => 0.39683,	# Load_Retry_Count seems to start at 252
 	},
 	'SandForce Driven SSDs' => {
 #		1 => 1.429,		# Raw Read Errors seems to start at 120 with thresh 50... on some
@@ -105,6 +116,7 @@ my %SCALEBYMODEL = (
 	# newer Cav GreenPower 3TB
 	'WDC WD30EURS-63SPKY0' => $SCALEBYFAMILY{'WD Caviar 2011+'},
 	'OCZ-AGILITY3' => $SCALEBYFAMILY{'SandForce Driven SSDs'},
+	'SAMSUNG HD203WI' => $SCALEBYFAMILY{'SAMSUNG SpinPoint F3 EG'},
 	'SAMSUNG SSD 830 Series' => {
 		195 => 0.5,		# ECC Recovered seems to start at 200
 		199 => 0.39525,	# UDMA CRC Errors seems to start a 253... perhaps 255?
@@ -120,7 +132,9 @@ my $param = shift @ARGV;
 my $devicelist = 0;
 my $worst = 0;
 my $raw;
-if ( $param =~ /^worst$/i ) {
+if ( ! defined  $param ) {
+	die "Usage: $0 <SMART parameter|devices|description>\n";
+} elsif ( $param =~ /^worst$/i ) {
 	$worst = 1;
 } elsif ( $param =~ s/^[rR](\d+)$/$1/ ) {
 	$raw = 1;
@@ -144,12 +158,17 @@ closedir LS;
 foreach my $drive (sort @drives) {
 	# deal with missing files
 	if ( ! -f "$FILES-$drive" ) {
-		print "U\n";
+		print "NotVisible:$FILES-$drive\n";
+		next;
+	} elsif ( ! -r "$FILES-$drive" ) {
+		print "NotReadable:$FILES-$drive\n";
 		next;
 	}
 	# grab the parameter from the file
-	open DR, "$FILES-$drive"
-		or die "FATAL - can't read \"$FILES-$drive\": $!\n";
+	if ( ! open DR, "$FILES-$drive" ) {
+		print "$!:$FILES-$drive\n";
+		next;
+	}
 	my $line;
 	my $family;
 	my $model;
