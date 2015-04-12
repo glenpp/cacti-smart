@@ -170,13 +170,6 @@
 			<direction>output</direction>
 			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart189"</oid>
 		</smart189>
-		<smart196>
-			<name>196 Reallocated Event Count</name>
-			<method>walk</method>
-			<source>value</source>
-			<direction>output</direction>
-			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart196"</oid>
-		</smart196>
 		<smartR190>
 			<name>R190 Airflow Temperature</name>
 			<method>walk</method>
@@ -198,6 +191,20 @@
 			<direction>output</direction>
 			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart195"</oid>
 		</smart195>
+		<smart196>
+			<name>196 Reallocated Event Count</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart196"</oid>
+		</smart196>
+		<smart198>
+			<name>198 Offline Uncorrectable</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart198"</oid>
+		</smart198>
 		<smart199>
 			<name>199 UDMA CRC Error Count</name>
 			<method>walk</method>

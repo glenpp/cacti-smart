@@ -16,19 +16,34 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 #
-# See: http://www.pitt-pladdy.com/blog/_20091031-144604_0000_SMART_stats_on_Cacti_via_SNMP_/
+# See: https://www.pitt-pladdy.com/blog/_20091031-144604_0000_SMART_stats_on_Cacti_via_SNMP_/
 #
-# Version 20121223
+# Version 20131103
 
 
 # where to keep the files
 STORE=/var/local/snmp
+PREFIX=smart-
+# what drive pattern to look for
+DRIVEPATTERN=/dev/sd
 
 
 # update smart parameters
-for devfull in /dev/sd?; do
-	dev=`basename $devfull`
-	/usr/sbin/smartctl -n idle -a $devfull >$STORE/smart-$dev.TMP
-	mv $STORE/smart-$dev.TMP $STORE/smart-$dev
+list="a b c d e f g h i j k l m n o p q r s t u v w x y z"
+last=`ls ${DRIVEPATTERN}[a-z] ${DRIVEPATTERN}[a-z][a-z] 2>/dev/null | tail -n1`
+for dl1 in "" $list; do
+	for dl2 in $list; do
+		drive=$DRIVEPATTERN$dl1$dl2
+		dev=`basename $drive`
+		if [ -b $drive ]; then
+			# capture SMART info
+			/usr/sbin/smartctl -n idle -a $drive >$STORE/$PREFIX$dev.TMP
+		else
+			# make an empty file to keep order
+			touch $STORE/$PREFIX$dev.TMP
+		fi
+		mv $STORE/$PREFIX$dev.TMP $STORE/$PREFIX$dev
+		[ $drive = $last ] && exit 0
+	done
 done
 

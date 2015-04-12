@@ -6,7 +6,7 @@ extend smartdevices /etc/snmp/smart-generic devices
 extend smartdescriptions /etc/snmp/smart-generic description
 # *hdd *[O]ssd		#FFAB00
 # 1 Raw_Read_Error_Rate
-extend smart1 /etc/snmp/smart-generic 1
+extend smart1 /etc/snmp/smart-generic W1
 # *hdd, [I]ssd		#B1441E
 # 3 Spin_Up_Time
 extend smart3 /etc/snmp/smart-generic 3
@@ -75,10 +75,13 @@ extend smartR190 /etc/snmp/smart-generic R190
 extend smartR194 /etc/snmp/smart-generic R194
 # [BS]hdd, [SO]ssd		#00BED9
 # 195 Hardware_ECC_Recovered
-extend smart195 /etc/snmp/smart-generic 195
+extend smart195 /etc/snmp/smart-generic W195
 # [CS]hdd, *[O]ssd		#F24AC8
 # 196 Reallocated_Event_Count
 extend smart196 /etc/snmp/smart-generic 196
+## hdd, [S]ssd, cf		#AAABA1
+# 198 Offline Uncorrectable
+extend smart198 /etc/snmp/smart-generic 198
 # hdd, [S]ssd, cf		#FF0000
 # 199 UDMA_CRC_Error_Count
 extend smart199 /etc/snmp/smart-generic 199
