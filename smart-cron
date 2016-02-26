@@ -18,7 +18,7 @@
 #
 # See: https://www.pitt-pladdy.com/blog/_20091031-144604_0000_SMART_stats_on_Cacti_via_SNMP_/
 #
-# Version 20131103
+# Version 20160226
 
 
 # where to keep the files
@@ -28,7 +28,22 @@ PREFIX=smart-
 DRIVEPATTERN=/dev/sd
 
 
+# update smart parameters from a list - if this is non-empty we will only check these devices, else we scan all $DRIVEPATTERN devices
+#SMARTLIST="
+#	/dev/disk/by-id/ata-ST3000DM001-...
+#	/dev/disk/by-id/ata-ST3000DM001-...
+#	/dev/disk/by-id/ata-ST3000DM001-...
+#	/dev/disk/by-id/ata-ST3000DM001-...
+#	/dev/disk/by-id/ata-ST3000DM001-...
+#	/dev/disk/by-id/ata-ST3000DM001-...
+#	/dev/disk/by-id/ata-Samsung_SSD_840_EVO_250GB_...
+#	/dev/disk/by-id/ata-Samsung_SSD_840_EVO_250GB_...
+#	/dev/disk/by-id/ata-Samsung_SSD_840_EVO_250GB_...
+#"
+
 # update smart parameters
+if [ -z "$SMARTLIST" ]; then
+	# Scan for all $DRIVEPATTERN devices
 list="a b c d e f g h i j k l m n o p q r s t u v w x y z"
 last=`ls ${DRIVEPATTERN}[a-z] ${DRIVEPATTERN}[a-z][a-z] 2>/dev/null | tail -n1`
 for dl1 in "" $list; do
@@ -46,4 +61,16 @@ for dl1 in "" $list; do
 		[ $drive = $last ] && exit 0
 	done
 done
+else
+	# go through our $SMARTLIST one by one
+	counter=0
+	for devfull in $SMARTLIST; do
+		dev=`basename $devfull`
+		dev=`printf "%03d-%s" $counter "$dev"`
+		counter=$(($counter+1))
+		/usr/sbin/smartctl -n idle -a $devfull >$STORE/smart-$dev.TMP
+		mv $STORE/smart-$dev.TMP $STORE/smart-$dev
+	done
+fi
+
 
