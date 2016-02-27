@@ -44,23 +44,23 @@ DRIVEPATTERN=/dev/sd
 # update smart parameters
 if [ -z "$SMARTLIST" ]; then
 	# Scan for all $DRIVEPATTERN devices
-list="a b c d e f g h i j k l m n o p q r s t u v w x y z"
-last=`ls ${DRIVEPATTERN}[a-z] ${DRIVEPATTERN}[a-z][a-z] 2>/dev/null | tail -n1`
-for dl1 in "" $list; do
-	for dl2 in $list; do
-		drive=$DRIVEPATTERN$dl1$dl2
-		dev=`basename $drive`
-		if [ -b $drive ]; then
-			# capture SMART info
-			/usr/sbin/smartctl -n idle -a $drive >$STORE/$PREFIX$dev.TMP
-		else
-			# make an empty file to keep order
-			touch $STORE/$PREFIX$dev.TMP
-		fi
-		mv $STORE/$PREFIX$dev.TMP $STORE/$PREFIX$dev
-		[ $drive = $last ] && exit 0
+	list="a b c d e f g h i j k l m n o p q r s t u v w x y z"
+	last=`ls ${DRIVEPATTERN}[a-z] ${DRIVEPATTERN}[a-z][a-z] 2>/dev/null | tail -n1`
+	for dl1 in "" $list; do
+		for dl2 in $list; do
+			drive=$DRIVEPATTERN$dl1$dl2
+			dev=`basename $drive`
+			if [ -b $drive ]; then
+				# capture SMART info
+				/usr/sbin/smartctl -n idle -a $drive >$STORE/TMP.$PREFIX$dev
+			else
+				# make an empty file to keep order
+				touch $STORE/TMP.$PREFIX$dev
+			fi
+			mv $STORE/TMP.$PREFIX$dev $STORE/$PREFIX$dev
+			[ $drive = $last ] && exit 0
+		done
 	done
-done
 else
 	# go through our $SMARTLIST one by one
 	counter=0
@@ -68,8 +68,8 @@ else
 		dev=`basename $devfull`
 		dev=`printf "%03d-%s" $counter "$dev"`
 		counter=$(($counter+1))
-		/usr/sbin/smartctl -n idle -a $devfull >$STORE/smart-$dev.TMP
-		mv $STORE/smart-$dev.TMP $STORE/smart-$dev
+		/usr/sbin/smartctl -n idle -a $devfull >$STORE/TMP.$PREFIX$dev
+		mv $STORE/TMP.$PREFIX$dev $STORE/$PREFIX$dev
 	done
 fi
 
