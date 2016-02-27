@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 use strict;
 use warnings;
 # Copyright (C) 2009-2015 Glen Pitt-Pladdy
