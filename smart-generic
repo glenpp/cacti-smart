@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-# Copyright (C) 2009-2015 Glen Pitt-Pladdy
+# Copyright (C) 2009-2016 Glen Pitt-Pladdy
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -115,6 +115,9 @@ my %SCALEBYMODEL = (
 	'ST2000DM001' => {
 		7 => 2.2222,	# Seek_Error_Rate seems to sit around 75 (once being used) with a threshold of 30
 		199 => 0.5,		# UDMA_CRC_Error_Count seems to start at 200
+	},
+	'TOSHIBA HDWE150' => {	# TODO no family yet
+		199 => 0.5,		# UDMA CRC Errors starts at 200, everything else 100
 	},
 	'WDC WD1001FALS-00J7B0' => $SCALEBYFAMILY{'Western Digital Caviar Black'},	# belts & braces
 	'WDC WD5000AAKS-00A7B0' => $SCALEBYFAMILY{'Western Digital Caviar Blue Serial ATA'},	# belts & braces
