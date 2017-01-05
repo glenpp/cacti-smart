@@ -119,6 +119,9 @@ my %SCALEBYMODEL = (
 	'TOSHIBA HDWE150' => {	# TODO no family yet
 		199 => 0.5,		# UDMA CRC Errors starts at 200, everything else 100
 	},
+	'TOSHIBA HDWD120' => {	# TODO no family yet
+		199 => 0.5,		# UDMA CRC Errors starts at 200, everything else 100
+	},
 	'WDC WD1001FALS-00J7B0' => $SCALEBYFAMILY{'Western Digital Caviar Black'},	# belts & braces
 	'WDC WD5000AAKS-00A7B0' => $SCALEBYFAMILY{'Western Digital Caviar Blue Serial ATA'},	# belts & braces
 	'WDC WD10EAVS-00D7B1' => $SCALEBYFAMILY{'Western Digital Caviar Green'},	# belts & braces
