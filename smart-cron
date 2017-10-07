@@ -68,7 +68,13 @@ else
 		dev=`basename $devfull`
 		dev=`printf "%03d-%s" $counter "$dev"`
 		counter=$(($counter+1))
-		/usr/sbin/smartctl -n idle -a $devfull >$STORE/TMP.$PREFIX$dev
+		if [ -b $devfull ]; then
+			# device exists
+			/usr/sbin/smartctl -n idle -a $devfull >$STORE/TMP.$PREFIX$dev
+		else
+			# no device - create placeholder file
+			touch $STORE/TMP.$PREFIX$dev
+		fi
 		mv $STORE/TMP.$PREFIX$dev $STORE/$PREFIX$dev
 	done
 fi
