@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-# Copyright (C) 2009-2016 Glen Pitt-Pladdy
+# Copyright (C) 2009-2018 Glen Pitt-Pladdy
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -26,7 +26,7 @@ use warnings;
 # Put "worst" on the command line and the smallest gap (worst case) to threshold of all
 # parameters will be output.
 #
-# Version 20170107
+# Version 20181103
 
 my $STORE = '/var/local/snmp';
 my $PREFIX = 'smart-';
@@ -119,6 +119,9 @@ my %SCALEBYMODEL = (
 	'TOSHIBA HDWE150' => {	# TODO no family yet
 		199 => 0.5,		# UDMA CRC Errors starts at 200, everything else 100
 	},
+	'TOSHIBA HDWE140' => {	# TODO no family yet
+		199 => 0.5,		# UDMA CRC Errors starts at 200, everything else 100
+	},
 	'TOSHIBA HDWD120' => {	# TODO no family yet
 		199 => 0.5,		# UDMA CRC Errors starts at 200, everything else 100
 	},
@@ -143,7 +146,10 @@ $SCALEBYMODEL{'ST2000DM001-1CH164'} = $SCALEBYMODEL{'ST2000DM001'};
 $SCALEBYMODEL{'ST2000DM001-W1E32T72'} = $SCALEBYMODEL{'ST2000DM001'};
 $SCALEBYMODEL{'ST3000DM001-1ER166'} = $SCALEBYMODEL{'ST2000DM001'};
 $SCALEBYMODEL{'ST3000DM001-1CH166'} = $SCALEBYMODEL{'ST2000DM001'};
+$SCALEBYMODEL{'ST2000DM001-9YN164'} = $SCALEBYMODEL{'ST2000DM001'};
 $SCALEBYMODEL{'ST3000DM001-9YN166'} = $SCALEBYMODEL{'ST2000DM001'};
+$SCALEBYMODEL{'ST2000DX001-1CM164'} = $SCALEBYMODEL{'ST2000DM001'};
+$SCALEBYMODEL{'ST2000DX002-2DV164'} = $SCALEBYMODEL{'ST2000DM001'};
 $SCALEBYMODEL{'SAMSUNG SSD PM830 FDE 2.5" 7mm 256GB'} = $SCALEBYMODEL{'SAMSUNG SSD 830 Series'};
 $SCALEBYMODEL{'Samsung SSD 840 EVO 120GB'} = $SCALEBYMODEL{'SAMSUNG SSD 840 Series'};
 $SCALEBYMODEL{'Samsung SSD 840 EVO 250GB'} = $SCALEBYMODEL{'SAMSUNG SSD 840 Series'};
@@ -170,7 +176,7 @@ if ( ! defined  $param ) {
 } elsif ( $param =~ /^\d+$/ ) {
 	$raw = 0;
 	$worst = 0;
-} elsif ( lc $param eq 'description' or lc $param eq 'devices' ) {
+} elsif ( lc $param eq 'description' or lc $param eq 'devices' or lc $param eq 'devicecount' ) {
 	# nothing to do
 } else {
 	die "FATAL - need the numeric parameter or 'description' to show\n";
@@ -187,6 +193,7 @@ my @drives;
 @drives = glob ( "$STORE/$PREFIX*" );
 @drives = map {local $_=$_; s/^.*\/smart-//; $_} @drives;
 
+my $devicecount = 0;
 foreach my $drive (sort @drives) {
 	# deal with missing files
 #	if ( ! -f "$STORE/$PREFIX$drive" ) {
@@ -248,6 +255,10 @@ foreach my $drive (sort @drives) {
 		if ( defined $capacity ) { $description .= " $capacity"; }
 		$description =~ s/^\s+//;
 		print "$description\n";
+		next;
+	} elsif ( lc $param eq 'devicecount' ) {
+		# we only count here and provide output at the end
+		$devicecount++;
 		next;
 	}
 	my $worstcase = 255;
@@ -319,4 +330,9 @@ foreach my $drive (sort @drives) {
 		# didn't get the parameter
 		print "U\n";
 	}
+}
+
+# if we had a devicecount then we need to output the count
+if ( lc $param eq 'devicecount' ) {
+	print "$devicecount\n";
 }
