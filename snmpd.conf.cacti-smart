@@ -4,6 +4,7 @@
 # *X = pre-fail parameter
 extend smartdevices /etc/snmp/smart-generic devices
 extend smartdescriptions /etc/snmp/smart-generic description
+extend smartdevicecount /etc/snmp/smart-generic devicecount
 # *hdd *[O]ssd		#FFAB00
 # 1 Raw_Read_Error_Rate
 extend smart1 /etc/snmp/smart-generic W1
