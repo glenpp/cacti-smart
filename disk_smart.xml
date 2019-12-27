@@ -5,6 +5,7 @@
 	<!--index_order_type>alphabetic</index_order_type-->
 	<index_order_type>numeric</index_order_type>
 	<oid_index>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartdevices"</oid_index>
+	<oid_num_indexes>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smartdevicecount"</oid_num_indexes>
 
 	<fields>
 
