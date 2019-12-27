@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
-# Copyright (C) 2009-2018 Glen Pitt-Pladdy
+# Copyright (C) 2009-2019 Glen Pitt-Pladdy
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -26,7 +26,7 @@ use warnings;
 # Put "worst" on the command line and the smallest gap (worst case) to threshold of all
 # parameters will be output.
 #
-# Version 20181103
+# Version 20191227
 
 my $STORE = '/var/local/snmp';
 my $PREFIX = 'smart-';
@@ -68,6 +68,17 @@ my %SCALEBYFAMILY = (
 		199 => 0.5,		# UDMA CRC Errors seems to sit at 200
 		200 => 0.5,		# Multi_Zone_Error_Rate seems to sit about 200
 	},
+	'Western Digital Blue' => {	# Generic WD Blue
+		1 => 0.671,		# Raw Read Errors seems to sit about 200 with thresh 51
+		3 => 0.478,		# Spin Up Time seems to start about 200 with thresh 21, but on WD40EZRZ 164-178
+		5 => 1.667,		# Reallocated Sectors seems to sit at 200 with tresh 140
+		7 => 0.5,		# Seek_Error_Rate seems to sit at 200
+		192 => 0.5,		# Power-Off_Retract_Count seems to sit at 200
+		193 => 0.5,		# Load_Cycle_Count seems to sit at 200
+		196 => 0.5,		# Reallocated Events seems to sit at 200
+		197 => 0.5,		# Current_Pending_Sector seems to sit at 200
+		199 => 0.5,		# UDMA CRC Errors seems to sit at 200
+	},
 	'SAMSUNG SpinPoint F3 EG' => {
 		2 => 0.39683,	# Throughput_Performance seems to start at 252
 		10 => 0.49751,	# Spin_Retry_Count seems to start at 252, threshold 51
@@ -96,6 +107,10 @@ my %SCALEBYFAMILY = (
 		241 => 'U',	# Lifetime_Writes_GiB is 0
 		242 => 'U',	# Lifetime_Reads_GiB is 0
 	},
+	'Samsung based SSDs' => {
+		195 => 0.5,		# ECC Recovered seems to start at 200
+		199 => 0.39525,	# UDMA CRC Errors seems to start a 253... perhaps 255?
+	},
 );
 $SCALEBYFAMILY{'Seagate Barracuda 7200.12 family'} = $SCALEBYFAMILY{'Seagate Barracuda 7200.12'};	# some smartctl versions say "family"
 $SCALEBYFAMILY{'Western Digital Caviar Black'} = $SCALEBYFAMILY{'WD Caviar'};
@@ -116,10 +131,16 @@ my %SCALEBYMODEL = (
 		7 => 2.2222,	# Seek_Error_Rate seems to sit around 75 (once being used) with a threshold of 30
 		199 => 0.5,		# UDMA_CRC_Error_Count seems to start at 200
 	},
+	'ST4000DM004' => {
+		7 => 3.3333,	# Seek_Error_Rate seems to sit around 75 (once being used) with a threshold of 45
+		199 => 0.5,		# UDMA_CRC_Error_Count seems to start at 200
+	},
 	'TOSHIBA HDWE150' => {	# TODO no family yet
+		10 => 1.33333,	# Spin Retry Count 105
 		199 => 0.5,		# UDMA CRC Errors starts at 200, everything else 100
 	},
 	'TOSHIBA HDWE140' => {	# TODO no family yet
+		10 => 1.33333,	# Spin Retry Count 105
 		199 => 0.5,		# UDMA CRC Errors starts at 200, everything else 100
 	},
 	'TOSHIBA HDWD120' => {	# TODO no family yet
@@ -133,10 +154,6 @@ my %SCALEBYMODEL = (
 	'WDC WD30EURS-63SPKY0' => $SCALEBYFAMILY{'WD Caviar 2011+'},
 	'OCZ-AGILITY3' => $SCALEBYFAMILY{'SandForce Driven SSDs'},
 	'SAMSUNG HD203WI' => $SCALEBYFAMILY{'SAMSUNG SpinPoint F3 EG'},
-	'SAMSUNG SSD 830 Series' => {
-		195 => 0.5,		# ECC Recovered seems to start at 200
-		199 => 0.39525,	# UDMA CRC Errors seems to start a 253... perhaps 255?
-	},
 	'SAMSUNG SSD 840 Series' => {
 		195 => 0.5,		# ECC Recovered seems to start at 200
 	},
@@ -150,6 +167,8 @@ $SCALEBYMODEL{'ST2000DM001-9YN164'} = $SCALEBYMODEL{'ST2000DM001'};
 $SCALEBYMODEL{'ST3000DM001-9YN166'} = $SCALEBYMODEL{'ST2000DM001'};
 $SCALEBYMODEL{'ST2000DX001-1CM164'} = $SCALEBYMODEL{'ST2000DM001'};
 $SCALEBYMODEL{'ST2000DX002-2DV164'} = $SCALEBYMODEL{'ST2000DM001'};
+$SCALEBYMODEL{'ST4000DM004-2CV104'} = $SCALEBYMODEL{'ST4000DM004'};
+$SCALEBYMODEL{'SAMSUNG SSD 830 Series'} = $SCALEBYFAMILY{'Samsung based SSDs'};
 $SCALEBYMODEL{'SAMSUNG SSD PM830 FDE 2.5" 7mm 256GB'} = $SCALEBYMODEL{'SAMSUNG SSD 830 Series'};
 $SCALEBYMODEL{'Samsung SSD 840 EVO 120GB'} = $SCALEBYMODEL{'SAMSUNG SSD 840 Series'};
 $SCALEBYMODEL{'Samsung SSD 840 EVO 250GB'} = $SCALEBYMODEL{'SAMSUNG SSD 840 Series'};
@@ -191,7 +210,7 @@ my @drives;
 #}
 #closedir LS;
 @drives = glob ( "$STORE/$PREFIX*" );
-@drives = map {local $_=$_; s/^.*\/smart-//; $_} @drives;
+@drives = map {local $_=$_; s/^.*\/smart-//; $_} grep { $_ !~ /\.json$/ } @drives;
 
 my $devicecount = 0;
 foreach my $drive (sort @drives) {
