@@ -1,0 +1,58 @@
+---
+
+# each parameter provides a failure threshold (fixed)
+# the "normal" 100% health value is however not provided
+# we assume "normal" is 100 (most cases) and drives that use different values
+# can be specified here
+#
+# setting a value to None will result in an output of U (unavailable)
+
+parameter_groups:
+  # arbitrary named groups with same parameters
+  SAMSUNG SSD 830 Series:
+    195: 200  # ECC Recovered
+    199: 253  # UDMA CRC Errors seems to start a 253... perhaps 255?
+  SAMSUNG SSD 840 Series:
+    195: 200  # ECC Recovered
+  ST4000DM004:
+    7: 75 # Seek_Error_Rate seems to sit around 75 (once being used) with a threshold of 45
+    199: 200  # UDMA_CRC_Error_Count
+  STx000xx00x:
+    7: 75 # Seek_Error_Rate seems to sit around 75 (once being used) with a threshold of 30
+    199: 200  # UDMA_CRC_Error_Count seems to start at 200
+  Toshiba X300:
+    10: 107   # Spin Retry Count
+    199: 200  # UDMA CRC Errors
+  Western Digital Blue:
+    1: 200  # Raw Read Errors seems to sit about 200 with thresh 51
+    3: 200  # Spin Up Time seems to start about 200 with thresh 21, but on WD40EZRZ 164-178
+    5: 200  # Reallocated Sectors seems to sit at 200 with tresh 140
+    7: 200  # Seek_Error_Rate seems to sit at 200
+    192: 200  # Power-Off_Retract_Count seems to sit at 200
+    193: 200  # Load_Cycle_Count seems to sit at 200
+    196: 200  # Reallocated Events seems to sit at 200
+    197: 200  # Current_Pending_Sector seems to sit at 200
+    199: 200  # UDMA CRC Errors seems to sit at 200
+
+
+by_family:
+  # map family : parameter_group
+  Toshiba X300: Toshiba X300
+  Western Digital Blue: Western Digital Blue
+
+
+by_model: {}
+  # map specifc model to parameter_group
+
+by_model_starts:
+  # map model start to parameter_group
+  SAMSUNG SSD PM830 : SAMSUNG SSD 830 Series
+  Samsung SSD 840 EVO : SAMSUNG SSD 840 Series
+  ST4000DM004-: ST4000DM004
+  ST4000DM000-: STx000xx00x
+  ST3000DM001-: STx000xx00x
+  ST2000DM001-: STx000xx00x
+  ST2000DX001-: STx000xx00x
+  ST2000DX002-: STx000xx00x
+
+

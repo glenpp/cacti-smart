@@ -2,138 +2,155 @@
 # hdd: B=Barracuda(Seagate) C=Caviar(WD) S=Samsung
 # -X = remove/hide parameter
 # *X = pre-fail parameter
-extend smartdevices /etc/snmp/smart-generic devices
-extend smartdescriptions /etc/snmp/smart-generic description
-extend smartdevicecount /etc/snmp/smart-generic devicecount
+extend smartdevices /etc/snmp/smart_generic.py devices
+extend smartdescriptions /etc/snmp/smart_generic.py description
+extend smartdevicecount /etc/snmp/smart_generic.py devicecount
 # *hdd *[O]ssd		#FFAB00
 # 1 Raw_Read_Error_Rate
-extend smart1 /etc/snmp/smart-generic W1
+extend smart1 /etc/snmp/smart_generic.py w1
 # *hdd, [I]ssd		#B1441E
 # 3 Spin_Up_Time
-extend smart3 /etc/snmp/smart-generic 3
+extend smart3 /etc/snmp/smart_generic.py 3
 # hdd, [I]ssd, cf	#837C04
 # 4 Start_Stop_Count
-extend smart4 /etc/snmp/smart-generic 4
+extend smart4 /etc/snmp/smart_generic.py 4
 # *hdd, [*S*OI]ssd	#EA8F00
 # 5 Reallocated_Sector_Ct
-extend smart5 /etc/snmp/smart-generic 5
+extend smart5 /etc/snmp/smart_generic.py 5
 # *hdd			#862F2F
 # 7 Seek_Error_Rate
-extend smart7 /etc/snmp/smart-generic 7
+extend smart7 /etc/snmp/smart_generic.py 7
 # hdd, ssd, cf	#35962B
 # 9 Power_On_Hours
-extend smart9 /etc/snmp/smart-generic 9
+extend smart9 /etc/snmp/smart_generic.py 9
 # *hdd			#35962B
 # 10 Spin_Retry_Count
-extend smart10 /etc/snmp/smart-generic 10
+extend smart10 /etc/snmp/smart_generic.py 10
 # hdd, ssd, cf	#6EA100
 # 12 Power_Cycle_Count
-extend smart12 /etc/snmp/smart-generic 12
+extend smart12 /etc/snmp/smart_generic.py 12
 # *[I]ssd		#FFC3C0
 # 170 Reserve_Block_Count
-extend smart170 /etc/snmp/smart-generic 170
+extend smart170 /etc/snmp/smart_generic.py 170
 # [I-O]ssd		#DE0056
 # 171 Program_Fail_Count      
-extend smart171 /etc/snmp/smart-generic 171
+extend smart171 /etc/snmp/smart_generic.py 171
 # [I-O]ssd		#AD3B6E
 # 172 Erase_Fail_Count
-extend smart172 /etc/snmp/smart-generic 172
+extend smart172 /etc/snmp/smart_generic.py 172
 # [*S-O]ssd		#EACC00
 # 177 Wear_Leveling_Count
-extend smart177 /etc/snmp/smart-generic 177
+extend smart177 /etc/snmp/smart_generic.py 177
 # *[S]ssd		#D8ACE0
 # 178 Used_Rsvd_Blk_Cnt_Chip
-extend smart178 /etc/snmp/smart-generic 178
+extend smart178 /etc/snmp/smart_generic.py 178
 # *[S]ssd		#FF5F00
 # 179 Used_Rsvd_Blk_Cnt_Tot
-extend smart179 /etc/snmp/smart-generic 179
+extend smart179 /etc/snmp/smart_generic.py 179
 # *[S]ssd		#00694A
 # 180 Unused_Rsvd_Blk_Cnt_Tot
-extend smart180 /etc/snmp/smart-generic 180
+extend smart180 /etc/snmp/smart_generic.py 180
 # [S-O]ssd		#623465
 # 181 Program_Fail_Cnt_Total
-extend smart181 /etc/snmp/smart-generic 181
+extend smart181 /etc/snmp/smart_generic.py 181
 # [S-O]ssd		#8D00BA
 # 182 Erase_Fail_Count_Total
-extend smart182 /etc/snmp/smart-generic 182
+extend smart182 /etc/snmp/smart_generic.py 182
 # *[S]ssd		#BCBEB3
 # 183 Runtime_Bad_Block
-extend smart183 /etc/snmp/smart-generic 183
+extend smart183 /etc/snmp/smart_generic.py 183
 # *[BS]hdd, *[I]ssd	#DA4725
 # 184 End-to-End_Error
-extend smart184 /etc/snmp/smart-generic 184
+extend smart184 /etc/snmp/smart_generic.py 184
 # [BS]hdd, ssd		#4123A1
 # 187 Reported_Uncorrect
-extend smart187 /etc/snmp/smart-generic 187
+extend smart187 /etc/snmp/smart_generic.py 187
 # [B]hdd			#A150AA
 # 189 High_Fly_Writes
-extend smart189 /etc/snmp/smart-generic 189
+extend smart189 /etc/snmp/smart_generic.py 189
 # hdd
 # 190 Airflow_Temperature_Cel
-extend smartR190 /etc/snmp/smart-generic R190
+extend smartR190 /etc/snmp/smart_generic.py r190
 # hdd, [O]ssd
 # 194 Temperature_Celsius
-extend smartR194 /etc/snmp/smart-generic R194
+extend smartR194 /etc/snmp/smart_generic.py r194
 # [BS]hdd, [SO]ssd		#00BED9
 # 195 Hardware_ECC_Recovered
-extend smart195 /etc/snmp/smart-generic W195
+extend smart195 /etc/snmp/smart_generic.py w195
 # [CS]hdd, *[O]ssd		#F24AC8
 # 196 Reallocated_Event_Count
-extend smart196 /etc/snmp/smart-generic 196
+extend smart196 /etc/snmp/smart_generic.py 196
 ## hdd, [S]ssd, cf		#AAABA1
 # 198 Offline Uncorrectable
-extend smart198 /etc/snmp/smart-generic 198
+extend smart198 /etc/snmp/smart_generic.py 198
 # hdd, [S]ssd, cf		#FF0000
 # 199 UDMA_CRC_Error_Count
-extend smart199 /etc/snmp/smart-generic 199
+extend smart199 /etc/snmp/smart_generic.py 199
 # cf				#942D0C
 # 203 Run_Out_Cancel
-extend smart203 /etc/snmp/smart-generic 203
+extend smart203 /etc/snmp/smart_generic.py 203
 # [I]ssd			#797C6E
 # 226 Workld_Media_Wear_Indic
-extend smart226 /etc/snmp/smart-generic 226
+extend smart226 /etc/snmp/smart_generic.py 226
 # *[O]ssd			#6557D0
 # 230 Life_Curve_Status
-extend smart230 /etc/snmp/smart-generic 230
+extend smart230 /etc/snmp/smart_generic.py 230
 # *[O]ssd				#CCBB00
 # 231 SSD_Life_Left
-extend smart231 /etc/snmp/smart-generic 231
+extend smart231 /etc/snmp/smart_generic.py 231
 # *[SI]ssd, cf			#9FA4EE
 # 232 Available_Reservd_Space
-extend smart232 /etc/snmp/smart-generic 232
+extend smart232 /etc/snmp/smart_generic.py 232
 # [I-O]ssd, cf			#4668E4
 # 233 Media_Wearout_Indicator
-extend smart233 /etc/snmp/smart-generic 233
+extend smart233 /etc/snmp/smart_generic.py 233
 # [S]ssd			#EE5019
 # 235 Power Recovery Count
-extend smart235 /etc/snmp/smart-generic 235
+extend smart235 /etc/snmp/smart_generic.py 235
 # [SI-O]ssd			#157419
 # 241 Total_LBAs_Written
-extend smart241 /etc/snmp/smart-generic 241
+extend smart241 /etc/snmp/smart_generic.py 241
 
+# Critical Warning
+extend smart_nvme_critical_warning /etc/snmp/smart_generic.py critical_warning
+# Available Spare
+extend smart_nvme_available_spare /etc/snmp/smart_generic.py available_spare
+# Percentage Used
+extend smart_nvme_percentage_used /etc/snmp/smart_generic.py percentage_used
+# Media and Data Integrity Errors
+extend smart_nvme_media_errors /etc/snmp/smart_generic.py media_errors
+# Temperature Sensor 1, 2, 3, ....
+extend smart_nvme_temperature_sensors_1 /etc/snmp/smart_generic.py temperature_sensors_1
+extend smart_nvme_temperature_sensors_2 /etc/snmp/smart_generic.py temperature_sensors_2
+extend smart_nvme_temperature_sensors_3 /etc/snmp/smart_generic.py temperature_sensors_3
+extend smart_nvme_temperature_sensors_4 /etc/snmp/smart_generic.py temperature_sensors_4
+extend smart_nvme_temperature_sensors_5 /etc/snmp/smart_generic.py temperature_sensors_5
+extend smart_nvme_temperature_sensors_6 /etc/snmp/smart_generic.py temperature_sensors_6
+extend smart_nvme_temperature_sensors_7 /etc/snmp/smart_generic.py temperature_sensors_7
+extend smart_nvme_temperature_sensors_8 /etc/snmp/smart_generic.py temperature_sensors_8
 
-
-
-
-
-
-
-
-Stuff to add (maybe):
-# ssd - samsung
-175 Program_Fail_Count_Chip
-176 Erase_Fail_Count_Chip
-# ssd - OCZ Agility 3
--174 Unexpect_Power_Loss_Ct
-201 Unc_Soft_Read_Err_Rate
-204 Soft_ECC_Correct_Rate
-# ssd - intel 320
-192 Unsafe_Shutdown_Count
-225 Host_Writes_32MiB
-227 Workld_Host_Reads_Perc
-228 Workload_Minutes
 
 
 
 
 # * = Pre-fail
+
+
+# Stuff to add (maybe):
+#
+# ssd - samsung
+# 175 Program_Fail_Count_Chip
+# 176 Erase_Fail_Count_Chip
+# ssd - OCZ Agility 3
+# -174 Unexpect_Power_Loss_Ct
+# 201 Unc_Soft_Read_Err_Rate
+# 204 Soft_ECC_Correct_Rate
+# ssd - intel 320
+# 192 Unsafe_Shutdown_Count
+# 225 Host_Writes_32MiB
+# 227 Workld_Host_Reads_Perc
+# 228 Workload_Minutes
+
+
+
+

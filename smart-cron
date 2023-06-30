@@ -18,7 +18,7 @@
 #
 # See: https://www.pitt-pladdy.com/blog/_20091031-144604_0000_SMART_stats_on_Cacti_via_SNMP_/
 #
-# Version 20160226
+# Version 20230630
 
 
 # where to keep the files
@@ -28,7 +28,8 @@ PREFIX=smart-
 DRIVEPATTERN=/dev/sd
 
 
-# update smart parameters from a list - if this is non-empty we will only check these devices, else we scan all $DRIVEPATTERN devices
+# update smart parameters from a fixed list - this is needed if device order may change
+# if this is non-empty we will only check these devices, else we scan all $DRIVEPATTERN devices
 #SMARTLIST="
 #	/dev/disk/by-id/ata-ST3000DM001-...
 #	/dev/disk/by-id/ata-ST3000DM001-...
@@ -52,12 +53,12 @@ if [ -z "$SMARTLIST" ]; then
 			dev=`basename $drive`
 			if [ -b $drive ]; then
 				# capture SMART info
-				/usr/sbin/smartctl -n idle -a $drive >$STORE/TMP.$PREFIX$dev
+				/usr/sbin/smartctl --nocheck=idle --all --json=o $drive >$STORE/TMP.$PREFIX$dev.json
 			else
 				# make an empty file to keep order
-				touch $STORE/TMP.$PREFIX$dev
+				touch $STORE/TMP.$PREFIX$dev.json
 			fi
-			mv $STORE/TMP.$PREFIX$dev $STORE/$PREFIX$dev
+			mv $STORE/TMP.$PREFIX$dev.json $STORE/$PREFIX$dev.json
 			[ $drive = $last ] && exit 0
 		done
 	done
@@ -70,12 +71,12 @@ else
 		counter=$(($counter+1))
 		if [ -b $devfull ]; then
 			# device exists
-			/usr/sbin/smartctl -n idle -a $devfull >$STORE/TMP.$PREFIX$dev
+			/usr/sbin/smartctl --nocheck=idle --all --json=o $devfull >$STORE/TMP.$PREFIX$dev.json
 		else
 			# no device - create placeholder file
-			touch $STORE/TMP.$PREFIX$dev
+			touch $STORE/TMP.$PREFIX$dev.json
 		fi
-		mv $STORE/TMP.$PREFIX$dev $STORE/$PREFIX$dev
+		mv $STORE/TMP.$PREFIX$dev.json $STORE/$PREFIX$dev.json
 	done
 fi
 
