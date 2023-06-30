@@ -26,8 +26,6 @@ Note that USB drives do not currently allow SMART data, even though the physical
 
 Like discussed previously, SMART data requires root privilege to access, and snmpd runs as a low privilege user. What I do is have a CRON job that reads this data and stores it in files for snmpd to access via extension scripts.
 
-Download:  Scripts and Cacti Templates for SMART are on GitHub
-
 If you are using the same config I described previously, then simply take the cron script smart-cron, make it executable and add the lines to your /etc/snmp/local-snmp-cronjob file to make it run this as one of the tasks:
 
 ```sh
