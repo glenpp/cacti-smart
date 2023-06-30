@@ -271,6 +271,93 @@
 		</smart241>
 
 
+		<smart_nvme_critwarn>
+			<name>NVME Critical Warning</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart_nvme_critical_warning"</oid>
+		</smart_nvme_critwarn>
+		<smart_nvme_availspr>
+			<name>NVME Available Spare</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart_nvme_available_spare"</oid>
+		</smart_nvme_availspr>
+		<smart_nvme_pctused>
+			<name>NVME Percentage Used</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart_nvme_percentage_used"</oid>
+		</smart_nvme_pctused>
+		<smart_nvme_mediaerr>
+			<name>NVME Media and Data Integrity Errors</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart_nvme_media_errors"</oid>
+		</smart_nvme_mediaerr>
+
+		<smart_nvme_temp_1>
+			<name>Temperature Sensor 1</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart_nvme_temperature_sensors_1"</oid>
+		</smart_nvme_temp_1>
+		<smart_nvme_temp_2>
+			<name>Temperature Sensor 2</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart_nvme_temperature_sensors_2"</oid>
+		</smart_nvme_temp_2>
+		<smart_nvme_temp_3>
+			<name>Temperature Sensor 3</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart_nvme_temperature_sensors_3"</oid>
+		</smart_nvme_temp_3>
+		<smart_nvme_temp_4>
+			<name>Temperature Sensor 4</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart_nvme_temperature_sensors_4"</oid>
+		</smart_nvme_temp_4>
+		<smart_nvme_temp_5>
+			<name>Temperature Sensor 5</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart_nvme_temperature_sensors_5"</oid>
+		</smart_nvme_temp_5>
+		<smart_nvme_temp_6>
+			<name>Temperature Sensor 6</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart_nvme_temperature_sensors_6"</oid>
+		</smart_nvme_temp_6>
+		<smart_nvme_temp_7>
+			<name>Temperature Sensor 7</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart_nvme_temperature_sensors_7"</oid>
+		</smart_nvme_temp_7>
+		<smart_nvme_temp_8>
+			<name>Temperature Sensor 8</name>
+			<method>walk</method>
+			<source>value</source>
+			<direction>output</direction>
+			<oid>NET-SNMP-EXTEND-MIB::nsExtendOutLine."smart_nvme_temperature_sensors_8"</oid>
+		</smart_nvme_temp_8>
+
+
 
 <!--
 		<smart>
