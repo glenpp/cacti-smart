@@ -25,7 +25,7 @@ Put SMART parameter ID on command line, prefixed by 'R' if you want raw value, o
 Put "worst" on the command line and the smallest gap (worst case) to threshold of all
 parameters will be output.
 
-Version 20190810
+Version 20230630
 """
 
 import os
