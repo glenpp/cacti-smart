@@ -17,15 +17,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 
-
-See: https://www.pitt-pladdy.com/blog/_20091031-144604_0000_SMART_stats_on_Cacti_via_SNMP_/
+See: https://github.com/glenpp/cacti-smart
 
 Put SMART parameter ID on command line, prefixed by 'R' if you want raw value, or 'W' if you want worst value
 
 Put "worst" on the command line and the smallest gap (worst case) to threshold of all
 parameters will be output.
 
-Version 20230630
+Version 20230701
 """
 
 import os
@@ -33,6 +32,7 @@ import glob
 import sys
 import yaml
 import json
+
 
 STORE = '/var/local/snmp'
 PREFIX = 'smart-'

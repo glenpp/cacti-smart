@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (C) 2012  Glen Pitt-Pladdy
+# Copyright (C) 2012-2023  Glen Pitt-Pladdy
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -16,9 +16,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 #
-# See: https://www.pitt-pladdy.com/blog/_20091031-144604_0000_SMART_stats_on_Cacti_via_SNMP_/
+# See: https://github.com/glenpp/cacti-smart
 #
-# Version 20230630
+# Version 20230701
 
 
 # where to keep the files
